@@ -47,9 +47,9 @@ namespace StudentCertMVP
         /// <exception cref="Exception">exception is thrown if there is no studentFileDir stored in the parameters</exception>
         public List<string> getExcelFilePaths()
         {
-            if(this.studentFileDir != null)
-            {
-                List<string> result = new List<string>();
+            List<string> result = new List<string>();
+            if (this.studentFileDir != null)
+            {              
                 foreach (string fileName in Directory.GetFiles(studentFileDir))
                 {
                     if (fileName.Contains(".xlsx"))
@@ -63,8 +63,6 @@ namespace StudentCertMVP
                 throw new Exception("ERROR: FileHandler object does not contain a student file directory. student ID must be provided before" +
                     "searching for program trackers");
             }
-
-
             return result;
         }
     }
