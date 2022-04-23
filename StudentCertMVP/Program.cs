@@ -1,6 +1,7 @@
+using ExcelDataReader;
 namespace StudentCertMVP
 {
-    internal static class Program
+    internal class Program
     {
         /// <summary>
         ///  The main entry point for the application.
@@ -13,5 +14,4 @@ namespace StudentCertMVP
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
         }
-    }
 }
