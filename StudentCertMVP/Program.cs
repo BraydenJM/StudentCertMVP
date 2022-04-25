@@ -12,6 +12,18 @@ namespace StudentCertMVP
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
+
+            string filepath = @"C:\Users\Brayden\Desktop\StuCert\StudentFiles";
+            FileHandler files = new FileHandler(filepath);
+            files.getFilePath("101014791");
+            files.getExcelFilePaths();
+            List<string> forms = new List<string>();
+
+            forms = files.getStudentForms();
+
+            tracker CSV = new tracker();
+
+
         }
     }
 }
