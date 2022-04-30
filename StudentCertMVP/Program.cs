@@ -1,5 +1,5 @@
-using ExcelDataReader;
 namespace StudentCertMVP
+
 {
     internal class Program
     {
@@ -13,6 +13,23 @@ namespace StudentCertMVP
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
+
+            string filepath = @"C:\Users\Brayden\Desktop\StuCert\StudentFiles";
+            FileHandler files = new FileHandler(filepath);
+            files.getFilePath("101015831");
+            files.getExcelFilePaths();
+            List<string> forms = files.getExcelFilePaths();
+            Course course1 = new Course("test 1", "CIS 124", 5, "FA42");
+            Course course2 = new Course("test 1", "CIS 142", 5, "FA42");
+            Course course3 = new Course("test 1", "CIS 160", 5, "FA42");
+            List<Course> courses = new List<Course>();
+            courses.Add(course3);
+            courses.Add(course1);
+            courses.Add(course2);
+            Tracker CSV = new Tracker(courses);
+            CSV.matchClasses(forms);
+
+
         }
     }
 }

@@ -1,206 +1,121 @@
-﻿using System;
-using ExcelDataReader;
+using System;
+using NPOI.XSSF.UserModel;
+using NPOI.HSSF.UserModel;
+using NPOI.SS.UserModel;
 
-public class tracker
+namespace StudentCertMVP
 {
-    public tracker()
+    public class Tracker
     {
-
-    }
-    /*private readExcel(string filepath)
-    {
-        var stream = File.Open(filepath, FileMode.Open, FileAccess.Read);
-        using (var reader = ExcelReaderFactory.CreateReader(stream))
+        private List<Course> classList { get; set; }
+        public Tracker(List<Course> classList)
         {
-            // Choose one of either 1 or 2:
-
-            // 1. Use the reader methods
-            List<List<String>> result = new List<List<String>>();
-            do
-            {
-                while (reader.Read())
-                {
-                    // reader.GetDouble(0);
-                }
-            } while (reader.NextResult());
-
-            // The result of each spreadsheet is in result.Tables
+            this.classList = classList;
         }
-    }*/
+        public Tracker()
+        {
+
+        }
         /// <summary>
-        /// From a CSV, xls or xlsx file builds a 2D list. List is structured with the colums as the outer list, with rows nested underneath. For example,
-        /// selecting column 3 row 25 would look like; List[2][24].
+        /// 
         /// </summary>
         /// <param name="filePath">directory file is located in</param>
         /// <param name="fileName">file name of file to build list from</param>
         /// <returns>Returns 2D list generated from CSV</returns>
-        public List<List<String>> buildListFromCSV(String filePath, String fileName)
+        public string matchClasses(List<string> forms)
         {
-            string[] fileExtension = fileName.Split('.');
-            List<List<String>> result = new List<List<String>>();
-            if (fileExtension[1].Equals("xls", StringComparison.OrdinalIgnoreCase))
+            if(classList.Count == 0)
             {
-                FileStream fileStream = new FileStream(filePath + fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-                IExcelDataReader reader = ExcelReaderFactory.CreateBinaryReader(fileStream);
-                result = generateFromExcel(reader);
+                throw new Exception("ERROR: no classes contained in the classList parameter");
             }
-            else if (fileExtension[1].Equals("xlsx", StringComparison.OrdinalIgnoreCase))
+            string result = string.Empty;
+            foreach (string form in forms)
             {
-                FileStream fileStream = new FileStream(filePath + fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-                System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
-                IExcelDataReader reader = ExcelReaderFactory.CreateOpenXmlReader(fileStream);
-                result = generateFromExcel(reader);
-            }
-            /*        else if (fileExtension[1].Equals("csv", StringComparison.OrdinalIgnoreCase))
-                    {
-                        StreamReader streamReader = new StreamReader(filePath + fileName);
-                        result = generateFromCSV(streamReader);
-                    }*/
-            else
-            {
-                throw new Exception($"ERROR: file extension for {fileName} is either missing or is and invalid extension.\n" +
-                    $"valid extensions include: xls, xlsx and csv");
-            }
-            return result;
-        }
-        /// <summary>
-        /// overloaded method. uses the file directory and file name in a single string rather than 2 seperate string
-        /// </summary>
-        /// <param name="filePath">directory and filename to parse to list</param>
-        /// <returns>returns 2d list generated from provided file</returns>
-        /// <exception cref="Exception"></exception>
-        public List<List<String>> buildListFromCSV(String filePath)
-        {
-            string[] fileExtension = filePath.Split('.');
-            List<List<String>> result = new List<List<String>>();
-            if (fileExtension[1].Equals("xls", StringComparison.OrdinalIgnoreCase))
-            {
-                FileStream fileStream = new FileStream(filePath + filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-                IExcelDataReader reader = ExcelReaderFactory.CreateBinaryReader(fileStream);
-                result = generateFromExcel(reader);
-            }
-            else if (fileExtension[1].Equals("xlsx", StringComparison.OrdinalIgnoreCase))
-            {
-                FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-                System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
-                IExcelDataReader reader = ExcelReaderFactory.CreateOpenXmlReader(fileStream);
-                result = generateFromExcel(reader);
-            }
-            else
-            {
-                throw new Exception($"ERROR: file extension for {filePath} is either missing or is and invalid extension.\n" +
-                    $"valid extensions include: xls, xlsx and csv");
-            }
-            return result;
-        }
-        /// <summary>
-        /// iterates through provided CSV file to create 2d list. 
-        /// </summary>
-        /// <param name="streamReader">file to parse</param>
-        /// <returns>returns 2d list generated from provided file</returns>
-        private List<List<string>> generateFromCSV(StreamReader streamReader)
-        {
-            List<List<String>> result = new List<List<String>>();
-            var reader = streamReader.ReadLine(); // read header line
-            int colSelect = 0;
-            if (reader != null)
-            {
-                //used to initialize lists to add to 2d array
-                var firstRow = reader.Split(",");
-                foreach (var row in firstRow)
+                string[] fileExtension = form.Split('.');
+
+                if (fileExtension[1].Equals("xls", StringComparison.OrdinalIgnoreCase))
                 {
-                    List<String> row1 = new List<String>();
-                    string rowString = removeQuotesAndCommas(row.ToString());
-                    row1.Add(rowString);
-                    result.Add(row1);
-                    colSelect++;
+                    FileStream fileStream = new FileStream(form, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                    HSSFWorkbook workbook = new HSSFWorkbook(fileStream);
+
+                    //result = generateFromExcel(workbook);
                 }
-                reader = streamReader.ReadLine();
-                while (reader != null)
+                else if (fileExtension[1].Equals("xlsx", StringComparison.OrdinalIgnoreCase))
                 {
-                    colSelect = 0;
-                    string[] readerParse = reader.Split(",");
-                    foreach (string col in readerParse)
-                    {
-                        string colString = removeQuotesAndCommas(col.ToString());
-                        result[colSelect].Add(colString);
-                        colSelect++;
-                    }
-                    reader = streamReader.ReadLine();
+                    result = matchClassesXSSF(form);
                 }
-                streamReader.Close();
+
+                else
+                {
+                    throw new Exception($"ERROR: file extension for {form} is either missing or is and invalid extension.\n" +
+                        $"valid extensions include: xls, xlsx and csv");
+                }
             }
+
             return result;
         }
         /// <summary>
-        /// iterates through provided excel formatted file to create 2d list. 
+        /// iterates through provided XLSX formatted excel file. Checks each row for matching course code value and writes to adjacent cells
         /// </summary>
-        /// <param name="reader">file to parse</param>
-        /// <returns>eturns 2d list generated from provided file</returns>
-        private List<List<String>> generateFromExcel(IExcelDataReader reader)
+        /// <param name="excelBook">excel file to parse</param>
+        /// <returns>string stating which classes had been entered to the excel file</returns>
+        private string matchClassesXSSF(string formPath)
         {
-            List<List<String>> result = new List<List<String>>();
-            var ds = reader.AsDataSet(new ExcelDataSetConfiguration());
-            var csvContent = string.Empty;
-            bool hasRuss = false;
-            int russDex = 0;
-            while (russDex < ds.Tables.Count)
+            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance); //XLSF files use a different encoding method
+            FileStream fileStream = new FileStream(formPath, FileMode.Open, FileAccess.Read, FileShare.Read);
+            //Column locations:
+            //col 0 = full class name
+            //col 1 = course code
+            //col 2 = credit amount
+            //col 3 = quarter taken
+            //col 4 = notes
+            XSSFWorkbook workbook = new XSSFWorkbook(fileStream);
+            List<string> matchedClasses = new List<string>();    
+            ISheet x = workbook.GetSheet("Sheet1");
+            for(int i = 22; i < x.LastRowNum; i++) //NOTE LOOP STARTS AT ROW 22 FOR TESTING ONLY
             {
-                if (ds.Tables[russDex].TableName == "Russell 2000")
+                if(x.GetRow(i) == null)
                 {
-                    hasRuss = true;
                     break;
                 }
-                russDex++;
-            }
-            if (hasRuss == true)
-            {
-                for (int j = 0; j < ds.Tables[russDex].Columns.Count; j++)
+                else
                 {
-                    List<string> col = new List<string>();
-                    for (int k = 0; k < ds.Tables[russDex].Rows.Count; k++)
+                    Course matchedClass = matchClass(x.GetRow(i).GetCell(1).StringCellValue);
+                    if(matchedClass != null)
                     {
-                        col.Add(ds.Tables[russDex].Rows[k][j].ToString());
-                    }
-                    result.Add(col);
+                        if (x.GetRow(i).GetCell(3) == null || x.GetRow(i).GetCell(3).StringCellValue == "") //verify cell is emtpy
+                        {
+                            x.GetRow(i).GetCell(3).SetCellValue(matchedClass.quarter);
+                            matchedClasses.Add(matchedClass.classCode);
+                        }
+                    }               
                 }
             }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Removes quotation marks and commas from string
-        /// </summary>
-        /// <param name="toRemove"></param>
-        /// <returns>String with quotation marks and commas removed</returns>
-        private string removeQuotesAndCommas(string toRemove)
-        {
-            string result = toRemove;
-            result = result.Replace(",", "");
-            result = result.Replace("\"", "");
-            result = result.Replace("\\", "");
-            return result;
-        }
-    //This will be completed once we can connect it to the menu functions
-    public void scheduleInfoFromMenu(string newSchedule)
-    {
-        foreach (String s in newSchedule)
-        {
-            char[] seperatorChars = { ',', '.', ':', '\t' };
-            string[] classes = newSchedule.Split(seperatorChars);
-            parseForClasses(classes);
-        }
-    }
-
-    private void parseForClasses(string[] classes, string[] excelClasses)
-    {
-        for (int i = 0; i < excelClasses.Length; i++)
-        {
-            if (classes.Contains(excelClasses[i]))
+            fileStream = new FileStream(formPath, FileMode.Open, FileAccess.Write, FileShare.Write); //change stream mode to write
+            workbook.Write(fileStream);
+            string result = "Matched classes:\n";
+            foreach(string matchedClass in matchedClasses)
             {
-                // call function to add to excel file
+                result += matchedClass + "\n";
             }
+
+            return result;
         }
+        /// <summary>
+        /// iterates through parameter list of courses for matching course code provided in args
+        /// </summary>
+        /// <param name="cellValue">course value to match</param>
+        /// <returns>course object matching the provided course code</returns>
+        private Course matchClass(string cellValue)
+        {
+            foreach(Course course in classList){
+                if(course.classCode.Equals(cellValue, StringComparison.OrdinalIgnoreCase))
+                {
+                    return course;
+                }
+            }
+            return null;
+        }
+
     }
-}
+} 
