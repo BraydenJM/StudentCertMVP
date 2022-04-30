@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using NPOI.XSSF.UserModel;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
@@ -32,7 +32,7 @@ namespace StudentCertMVP
             foreach (string form in forms)
             {
                 string[] fileExtension = form.Split('.');
-                
+
                 if (fileExtension[1].Equals("xls", StringComparison.OrdinalIgnoreCase))
                 {
                     FileStream fileStream = new FileStream(form, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
@@ -118,4 +118,4 @@ namespace StudentCertMVP
         }
 
     }
-}
+} 
