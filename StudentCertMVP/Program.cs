@@ -1,4 +1,6 @@
+using System.Linq;
 namespace StudentCertMVP
+
 {
     internal static class Program
     {
@@ -15,13 +17,18 @@ namespace StudentCertMVP
 
             string filepath = @"C:\Users\Brayden\Desktop\StuCert\StudentFiles";
             FileHandler files = new FileHandler(filepath);
-            files.getFilePath("101014791");
+            files.getFilePath("101015831");
             files.getExcelFilePaths();
-            List<string> forms = new List<string>();
-
-            forms = files.getStudentForms();
-
-            tracker CSV = new tracker();
+            List<string> forms = files.getExcelFilePaths();
+            Course course1 = new Course("test 1", "CIS 124", 5, "FA42");
+            Course course2 = new Course("test 1", "CIS 142", 5, "FA42");
+            Course course3 = new Course("test 1", "CIS 160", 5, "FA42");
+            List<Course> courses = new List<Course>();
+            courses.Add(course3);
+            courses.Add(course1);
+            courses.Add(course2);
+            Tracker CSV = new Tracker(courses);
+            CSV.matchClasses(forms);
 
 
         }
