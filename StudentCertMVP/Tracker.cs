@@ -198,23 +198,23 @@ public class tracker
     private bool parseForClasses(List<string> classes, List<List<String>> excelClasses)
     {
         bool complete = false;
-        foreach (List<string> subList in excelClasses)
-        {
-            foreach (string item in subList)
+        //foreach (List<string> subList in excelClasses)
+        //{
+            foreach (string item in classes)
             {
-                if (!classes.Contains(item))
+            if (!excelClasses[0].Contains(item))
                 {
                     complete = addToExcel(item);
                     // call function to add to excel file
                 }
             }
-        }
+        //}
         return complete;
     }
     //Still WIP
     private bool addToExcel(string item)
     {
-        bool complete = false;
+        bool complete = true;
         return complete;
     }
 }

@@ -13,6 +13,10 @@ namespace StudentCertMVP
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
+
+            //testing code, remove later
+            tracker Trackertest = new tracker();
+            Trackertest.scheduleInfoFromMenu("Nothing, Test,Information Systems Concepts,Testing", @"C:\Users\Steven\Desktop\Class Assignments\Student Files\Meyer, Brayden 101015831 CH33  D\[backfill][primary] CIS AAST-SW DEV.xlsx");
         }
     }
 }
