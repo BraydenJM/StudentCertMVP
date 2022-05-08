@@ -49,16 +49,16 @@
             this.viewHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sendFeedbackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutTheProgramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.studentSearchLabel = new System.Windows.Forms.Label();
-            this.studentIdLabel = new System.Windows.Forms.Label();
-            this.studentIdSearchBox = new System.Windows.Forms.TextBox();
-            this.searchIdBtn = new System.Windows.Forms.Button();
-            this.anotherWayToSearch = new System.Windows.Forms.Label();
-            this.studentNameLabel = new System.Windows.Forms.Label();
-            this.studentEmailLabel = new System.Windows.Forms.Label();
-            this.studentNameSearchBox = new System.Windows.Forms.TextBox();
+            this.FormNamesLabel = new System.Windows.Forms.Label();
+            this.FormNameTextBox = new System.Windows.Forms.TextBox();
+            this.enterScheduleBtn = new System.Windows.Forms.Button();
+            this.scheduleInputLabel = new System.Windows.Forms.Label();
+            this.consoleOutputLabel = new System.Windows.Forms.Label();
+            this.scheduleInputBox = new System.Windows.Forms.TextBox();
             this.studentEmailSearchBox = new System.Windows.Forms.TextBox();
-            this.nameEmailSearchBtn = new System.Windows.Forms.Button();
+            this.idInputBox = new System.Windows.Forms.TextBox();
+            this.idLabel = new System.Windows.Forms.Label();
+            this.idBtn = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -230,111 +230,119 @@
             this.aboutTheProgramToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.aboutTheProgramToolStripMenuItem.Text = "About the Program";
             // 
-            // studentSearchLabel
+            // FormNamesLabel
             // 
-            this.studentSearchLabel.AutoSize = true;
-            this.studentSearchLabel.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.studentSearchLabel.Location = new System.Drawing.Point(281, 76);
-            this.studentSearchLabel.Name = "studentSearchLabel";
-            this.studentSearchLabel.Size = new System.Drawing.Size(226, 30);
-            this.studentSearchLabel.TabIndex = 1;
-            this.studentSearchLabel.Text = "Search for Student by";
-            this.studentSearchLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.FormNamesLabel.AutoSize = true;
+            this.FormNamesLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.FormNamesLabel.Location = new System.Drawing.Point(336, 309);
+            this.FormNamesLabel.Name = "FormNamesLabel";
+            this.FormNamesLabel.Size = new System.Drawing.Size(124, 25);
+            this.FormNamesLabel.TabIndex = 2;
+            this.FormNamesLabel.Text = "Form Names";
             // 
-            // studentIdLabel
+            // FormNameTextBox
             // 
-            this.studentIdLabel.AutoSize = true;
-            this.studentIdLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.studentIdLabel.Location = new System.Drawing.Point(177, 163);
-            this.studentIdLabel.Name = "studentIdLabel";
-            this.studentIdLabel.Size = new System.Drawing.Size(108, 25);
-            this.studentIdLabel.TabIndex = 2;
-            this.studentIdLabel.Text = "Student ID";
+            this.FormNameTextBox.Location = new System.Drawing.Point(12, 338);
+            this.FormNameTextBox.Multiline = true;
+            this.FormNameTextBox.Name = "FormNameTextBox";
+            this.FormNameTextBox.ReadOnly = true;
+            this.FormNameTextBox.Size = new System.Drawing.Size(729, 29);
+            this.FormNameTextBox.TabIndex = 3;
             // 
-            // studentIdSearchBox
+            // enterScheduleBtn
             // 
-            this.studentIdSearchBox.Location = new System.Drawing.Point(324, 159);
-            this.studentIdSearchBox.Name = "studentIdSearchBox";
-            this.studentIdSearchBox.Size = new System.Drawing.Size(194, 29);
-            this.studentIdSearchBox.TabIndex = 3;
+            this.enterScheduleBtn.Location = new System.Drawing.Point(666, 271);
+            this.enterScheduleBtn.Name = "enterScheduleBtn";
+            this.enterScheduleBtn.Size = new System.Drawing.Size(75, 33);
+            this.enterScheduleBtn.TabIndex = 4;
+            this.enterScheduleBtn.Text = "Enter";
+            this.enterScheduleBtn.UseVisualStyleBackColor = true;
+            this.enterScheduleBtn.Click += new System.EventHandler(this.enterScheduleBtn_Click);
             // 
-            // searchIdBtn
+            // scheduleInputLabel
             // 
-            this.searchIdBtn.Location = new System.Drawing.Point(443, 211);
-            this.searchIdBtn.Name = "searchIdBtn";
-            this.searchIdBtn.Size = new System.Drawing.Size(75, 33);
-            this.searchIdBtn.TabIndex = 4;
-            this.searchIdBtn.Text = "Search";
-            this.searchIdBtn.UseVisualStyleBackColor = true;
+            this.scheduleInputLabel.AutoSize = true;
+            this.scheduleInputLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.scheduleInputLabel.Location = new System.Drawing.Point(336, 131);
+            this.scheduleInputLabel.Name = "scheduleInputLabel";
+            this.scheduleInputLabel.Size = new System.Drawing.Size(146, 25);
+            this.scheduleInputLabel.TabIndex = 6;
+            this.scheduleInputLabel.Text = "Schedule Input";
             // 
-            // anotherWayToSearch
+            // consoleOutputLabel
             // 
-            this.anotherWayToSearch.AutoSize = true;
-            this.anotherWayToSearch.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.anotherWayToSearch.Location = new System.Drawing.Point(376, 287);
-            this.anotherWayToSearch.Name = "anotherWayToSearch";
-            this.anotherWayToSearch.Size = new System.Drawing.Size(48, 32);
-            this.anotherWayToSearch.TabIndex = 5;
-            this.anotherWayToSearch.Text = "OR";
+            this.consoleOutputLabel.AutoSize = true;
+            this.consoleOutputLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.consoleOutputLabel.Location = new System.Drawing.Point(336, 403);
+            this.consoleOutputLabel.Name = "consoleOutputLabel";
+            this.consoleOutputLabel.Size = new System.Drawing.Size(152, 25);
+            this.consoleOutputLabel.TabIndex = 7;
+            this.consoleOutputLabel.Text = "Console Output";
             // 
-            // studentNameLabel
+            // scheduleInputBox
             // 
-            this.studentNameLabel.AutoSize = true;
-            this.studentNameLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.studentNameLabel.Location = new System.Drawing.Point(175, 370);
-            this.studentNameLabel.Name = "studentNameLabel";
-            this.studentNameLabel.Size = new System.Drawing.Size(64, 25);
-            this.studentNameLabel.TabIndex = 6;
-            this.studentNameLabel.Text = "Name";
-            // 
-            // studentEmailLabel
-            // 
-            this.studentEmailLabel.AutoSize = true;
-            this.studentEmailLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.studentEmailLabel.Location = new System.Drawing.Point(177, 423);
-            this.studentEmailLabel.Name = "studentEmailLabel";
-            this.studentEmailLabel.Size = new System.Drawing.Size(59, 25);
-            this.studentEmailLabel.TabIndex = 7;
-            this.studentEmailLabel.Text = "Email";
-            // 
-            // studentNameSearchBox
-            // 
-            this.studentNameSearchBox.Location = new System.Drawing.Point(324, 366);
-            this.studentNameSearchBox.Name = "studentNameSearchBox";
-            this.studentNameSearchBox.Size = new System.Drawing.Size(194, 29);
-            this.studentNameSearchBox.TabIndex = 8;
+            this.scheduleInputBox.AcceptsReturn = true;
+            this.scheduleInputBox.AcceptsTab = true;
+            this.scheduleInputBox.AllowDrop = true;
+            this.scheduleInputBox.Location = new System.Drawing.Point(12, 159);
+            this.scheduleInputBox.Multiline = true;
+            this.scheduleInputBox.Name = "scheduleInputBox";
+            this.scheduleInputBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.scheduleInputBox.Size = new System.Drawing.Size(729, 106);
+            this.scheduleInputBox.TabIndex = 8;
             // 
             // studentEmailSearchBox
             // 
-            this.studentEmailSearchBox.Location = new System.Drawing.Point(324, 423);
+            this.studentEmailSearchBox.Location = new System.Drawing.Point(12, 431);
+            this.studentEmailSearchBox.Multiline = true;
             this.studentEmailSearchBox.Name = "studentEmailSearchBox";
-            this.studentEmailSearchBox.Size = new System.Drawing.Size(194, 29);
+            this.studentEmailSearchBox.ReadOnly = true;
+            this.studentEmailSearchBox.Size = new System.Drawing.Size(729, 29);
             this.studentEmailSearchBox.TabIndex = 9;
             // 
-            // nameEmailSearchBtn
+            // idInputBox
             // 
-            this.nameEmailSearchBtn.Location = new System.Drawing.Point(443, 471);
-            this.nameEmailSearchBtn.Name = "nameEmailSearchBtn";
-            this.nameEmailSearchBtn.Size = new System.Drawing.Size(75, 33);
-            this.nameEmailSearchBtn.TabIndex = 10;
-            this.nameEmailSearchBtn.Text = "Search";
-            this.nameEmailSearchBtn.UseVisualStyleBackColor = true;
+            this.idInputBox.Location = new System.Drawing.Point(12, 64);
+            this.idInputBox.Multiline = true;
+            this.idInputBox.Name = "idInputBox";
+            this.idInputBox.Size = new System.Drawing.Size(729, 29);
+            this.idInputBox.TabIndex = 12;
+            // 
+            // idLabel
+            // 
+            this.idLabel.AutoSize = true;
+            this.idLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.idLabel.Location = new System.Drawing.Point(336, 36);
+            this.idLabel.Name = "idLabel";
+            this.idLabel.Size = new System.Drawing.Size(162, 25);
+            this.idLabel.TabIndex = 11;
+            this.idLabel.Text = "Student ID Input";
+            // 
+            // idBtn
+            // 
+            this.idBtn.Location = new System.Drawing.Point(666, 99);
+            this.idBtn.Name = "idBtn";
+            this.idBtn.Size = new System.Drawing.Size(75, 33);
+            this.idBtn.TabIndex = 10;
+            this.idBtn.Text = "Enter";
+            this.idBtn.UseVisualStyleBackColor = true;
+            this.idBtn.Click += new System.EventHandler(this.idBtn_Click);
             // 
             // StudentDegreeTrackingProgram
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(753, 639);
-            this.Controls.Add(this.nameEmailSearchBtn);
+            this.Controls.Add(this.idInputBox);
+            this.Controls.Add(this.idLabel);
+            this.Controls.Add(this.idBtn);
             this.Controls.Add(this.studentEmailSearchBox);
-            this.Controls.Add(this.studentNameSearchBox);
-            this.Controls.Add(this.studentEmailLabel);
-            this.Controls.Add(this.studentNameLabel);
-            this.Controls.Add(this.anotherWayToSearch);
-            this.Controls.Add(this.searchIdBtn);
-            this.Controls.Add(this.studentIdSearchBox);
-            this.Controls.Add(this.studentIdLabel);
-            this.Controls.Add(this.studentSearchLabel);
+            this.Controls.Add(this.scheduleInputBox);
+            this.Controls.Add(this.consoleOutputLabel);
+            this.Controls.Add(this.scheduleInputLabel);
+            this.Controls.Add(this.enterScheduleBtn);
+            this.Controls.Add(this.FormNameTextBox);
+            this.Controls.Add(this.FormNamesLabel);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.MainMenuStrip = this.menuStrip1;
@@ -373,15 +381,15 @@
         private ToolStripMenuItem viewHelpToolStripMenuItem;
         private ToolStripMenuItem sendFeedbackToolStripMenuItem;
         private ToolStripMenuItem aboutTheProgramToolStripMenuItem;
-        private Label studentSearchLabel;
-        private Label studentIdLabel;
-        private TextBox studentIdSearchBox;
-        private Button searchIdBtn;
-        private Label anotherWayToSearch;
-        private Label studentNameLabel;
-        private Label studentEmailLabel;
-        private TextBox studentNameSearchBox;
+        private Label FormNamesLabel;
+        private TextBox FormNameTextBox;
+        private Button enterScheduleBtn;
+        private Label scheduleInputLabel;
+        private Label consoleOutputLabel;
+        private TextBox scheduleInputBox;
         private TextBox studentEmailSearchBox;
-        private Button nameEmailSearchBtn;
+        private TextBox idInputBox;
+        private Label idLabel;
+        private Button idBtn;
     }
 }
