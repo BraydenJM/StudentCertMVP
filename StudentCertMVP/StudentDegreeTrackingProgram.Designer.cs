@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentDegreeTrackingProgram));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,16 +41,11 @@
             this.viewHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sendFeedbackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutTheProgramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.FormNamesLabel = new System.Windows.Forms.Label();
-            this.FormNameTextBox = new System.Windows.Forms.TextBox();
-            this.enterScheduleBtn = new System.Windows.Forms.Button();
-            this.scheduleInputLabel = new System.Windows.Forms.Label();
-            this.consoleOutputLabel = new System.Windows.Forms.Label();
-            this.scheduleInputBox = new System.Windows.Forms.TextBox();
-            this.studentEmailSearchBox = new System.Windows.Forms.TextBox();
-            this.idInputBox = new System.Windows.Forms.TextBox();
-            this.idLabel = new System.Windows.Forms.Label();
-            this.idBtn = new System.Windows.Forms.Button();
+            this.messageDescription = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -157,122 +153,71 @@
             this.aboutTheProgramToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.aboutTheProgramToolStripMenuItem.Text = "About the Program";
             // 
-            // FormNamesLabel
+            // messageDescription
             // 
-            this.FormNamesLabel.AutoSize = true;
-            this.FormNamesLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FormNamesLabel.Location = new System.Drawing.Point(336, 309);
-            this.FormNamesLabel.Name = "FormNamesLabel";
-            this.FormNamesLabel.Size = new System.Drawing.Size(124, 25);
-            this.FormNamesLabel.TabIndex = 2;
-            this.FormNamesLabel.Text = "Form Names";
+            this.messageDescription.AutoSize = true;
+            this.messageDescription.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.messageDescription.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.messageDescription.Location = new System.Drawing.Point(155, 54);
+            this.messageDescription.Name = "messageDescription";
+            this.messageDescription.Size = new System.Drawing.Size(473, 22);
+            this.messageDescription.TabIndex = 1;
+            this.messageDescription.Text = "Welcome to the Student Degree Tracking Program";
             // 
-            // FormNameTextBox
+            // label1
             // 
-            this.FormNameTextBox.Location = new System.Drawing.Point(12, 338);
-            this.FormNameTextBox.Multiline = true;
-            this.FormNameTextBox.Name = "FormNameTextBox";
-            this.FormNameTextBox.ReadOnly = true;
-            this.FormNameTextBox.Size = new System.Drawing.Size(729, 29);
-            this.FormNameTextBox.TabIndex = 3;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(227, 122);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(339, 19);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "You can do the following with this program:";
             // 
-            // enterScheduleBtn
+            // label2
             // 
-            this.enterScheduleBtn.Location = new System.Drawing.Point(666, 271);
-            this.enterScheduleBtn.Name = "enterScheduleBtn";
-            this.enterScheduleBtn.Size = new System.Drawing.Size(75, 33);
-            this.enterScheduleBtn.TabIndex = 4;
-            this.enterScheduleBtn.Text = "Enter";
-            this.enterScheduleBtn.UseVisualStyleBackColor = true;
-            this.enterScheduleBtn.Click += new System.EventHandler(this.enterScheduleBtn_Click);
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(303, 166);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(128, 16);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Import student files";
             // 
-            // scheduleInputLabel
+            // label3
             // 
-            this.scheduleInputLabel.AutoSize = true;
-            this.scheduleInputLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.scheduleInputLabel.Location = new System.Drawing.Point(336, 131);
-            this.scheduleInputLabel.Name = "scheduleInputLabel";
-            this.scheduleInputLabel.Size = new System.Drawing.Size(146, 25);
-            this.scheduleInputLabel.TabIndex = 6;
-            this.scheduleInputLabel.Text = "Schedule Input";
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(281, 249);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(181, 16);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Modify student\'s degree file";
             // 
-            // consoleOutputLabel
+            // label4
             // 
-            this.consoleOutputLabel.AutoSize = true;
-            this.consoleOutputLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.consoleOutputLabel.Location = new System.Drawing.Point(336, 403);
-            this.consoleOutputLabel.Name = "consoleOutputLabel";
-            this.consoleOutputLabel.Size = new System.Drawing.Size(152, 25);
-            this.consoleOutputLabel.TabIndex = 7;
-            this.consoleOutputLabel.Text = "Console Output";
-            // 
-            // scheduleInputBox
-            // 
-            this.scheduleInputBox.AcceptsReturn = true;
-            this.scheduleInputBox.AcceptsTab = true;
-            this.scheduleInputBox.AllowDrop = true;
-            this.scheduleInputBox.Location = new System.Drawing.Point(12, 159);
-            this.scheduleInputBox.Multiline = true;
-            this.scheduleInputBox.Name = "scheduleInputBox";
-            this.scheduleInputBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.scheduleInputBox.Size = new System.Drawing.Size(729, 106);
-            this.scheduleInputBox.TabIndex = 8;
-            // 
-            // studentEmailSearchBox
-            // 
-            this.studentEmailSearchBox.Location = new System.Drawing.Point(12, 431);
-            this.studentEmailSearchBox.Multiline = true;
-            this.studentEmailSearchBox.Name = "studentEmailSearchBox";
-            this.studentEmailSearchBox.ReadOnly = true;
-            this.studentEmailSearchBox.Size = new System.Drawing.Size(729, 29);
-            this.studentEmailSearchBox.TabIndex = 9;
-            // 
-            // idInputBox
-            // 
-            this.idInputBox.Location = new System.Drawing.Point(12, 64);
-            this.idInputBox.Multiline = true;
-            this.idInputBox.Name = "idInputBox";
-            this.idInputBox.Size = new System.Drawing.Size(729, 29);
-            this.idInputBox.TabIndex = 12;
-            this.idInputBox.TextChanged += new System.EventHandler(this.idInputBox_TextChanged);
-            // 
-            // idLabel
-            // 
-            this.idLabel.AutoSize = true;
-            this.idLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.idLabel.Location = new System.Drawing.Point(336, 36);
-            this.idLabel.Name = "idLabel";
-            this.idLabel.Size = new System.Drawing.Size(162, 25);
-            this.idLabel.TabIndex = 11;
-            this.idLabel.Text = "Student ID Input";
-            // 
-            // idBtn
-            // 
-            this.idBtn.Location = new System.Drawing.Point(666, 99);
-            this.idBtn.Name = "idBtn";
-            this.idBtn.Size = new System.Drawing.Size(75, 33);
-            this.idBtn.TabIndex = 10;
-            this.idBtn.Text = "Enter";
-            this.idBtn.UseVisualStyleBackColor = true;
-            this.idBtn.Click += new System.EventHandler(this.idBtn_Click);
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(258, 206);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(219, 16);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Track a student\'s degree progress";
             // 
             // StudentDegreeTrackingProgram
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(753, 639);
-            this.Controls.Add(this.idInputBox);
-            this.Controls.Add(this.idLabel);
-            this.Controls.Add(this.idBtn);
-            this.Controls.Add(this.studentEmailSearchBox);
-            this.Controls.Add(this.scheduleInputBox);
-            this.Controls.Add(this.consoleOutputLabel);
-            this.Controls.Add(this.scheduleInputLabel);
-            this.Controls.Add(this.enterScheduleBtn);
-            this.Controls.Add(this.FormNameTextBox);
-            this.Controls.Add(this.FormNamesLabel);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.messageDescription);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ForeColor = System.Drawing.Color.Black;
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximumSize = new System.Drawing.Size(1000, 900);
@@ -300,15 +245,10 @@
         private ToolStripMenuItem viewHelpToolStripMenuItem;
         private ToolStripMenuItem sendFeedbackToolStripMenuItem;
         private ToolStripMenuItem aboutTheProgramToolStripMenuItem;
-        private Label FormNamesLabel;
-        private TextBox FormNameTextBox;
-        private Button enterScheduleBtn;
-        private Label scheduleInputLabel;
-        private Label consoleOutputLabel;
-        private TextBox scheduleInputBox;
-        private TextBox studentEmailSearchBox;
-        private TextBox idInputBox;
-        private Label idLabel;
-        private Button idBtn;
+        private Label messageDescription;
+        private Label label1;
+        private Label label2;
+        private Label label3;
+        private Label label4;
     }
 }

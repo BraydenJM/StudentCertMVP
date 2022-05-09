@@ -42,16 +42,16 @@ namespace StudentCertMVP
         }
 
         //stores user input ID on btn click
-        private void idBtn_Click(object sender, EventArgs e)
-        {
-            studentID = idInputBox.Text;
-        }
+        //private void idBtn_Click(object sender, EventArgs e)
+        //{
+        //    studentID = idInputBox.Text;
+        //}
 
-        //stores user input schedule on btn click
-        private void enterScheduleBtn_Click(object sender, EventArgs e)
-        {
-            studentSched = scheduleInputBox.Text;
-        }
+        ////stores user input schedule on btn click
+        //private void enterScheduleBtn_Click(object sender, EventArgs e)
+        //{
+        //    studentSched = scheduleInputBox.Text;
+        //}
 
         // receive student id input
         private void idInputBox_TextChanged(object sender, EventArgs e)
@@ -65,5 +65,19 @@ namespace StudentCertMVP
             Application.Exit();
         }
 
+        private void FormNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            // taking full path of a file
+            string strPath = "C://myfiles//ref//file1.txt";
+
+            // initialize the value of filename
+            string filename = null;
+
+            // using the method
+            filename = Path.GetFileName(strPath);
+            Console.WriteLine("Filename = " + filename);
+
+            Console.ReadLine();
+        }
     }
 }
