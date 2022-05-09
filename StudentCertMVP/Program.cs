@@ -19,9 +19,9 @@ namespace StudentCertMVP
             files.getFilePath("101015831");
             files.getExcelFilePaths();
             List<string> forms = files.getExcelFilePaths();
-            Course course1 = new Course("test 1", "CIS 124", 5, "FA42");
-            Course course2 = new Course("test 1", "CIS 142", 5, "FA42");
-            Course course3 = new Course("test 1", "CIS 160", 5, "FA42");
+            Course course1 = new Course("test 1", "CIS 124", 5, "SU22");
+            Course course2 = new Course("test 1", "CIS 142", 5, "SU22");
+            Course course3 = new Course("test 1", "CIS 160", 5, "SU22");
             List<Course> courses = new List<Course>();
             courses.Add(course3);
             courses.Add(course1);
