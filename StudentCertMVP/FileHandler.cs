@@ -29,7 +29,7 @@ namespace StudentCertMVP
         public string getFilePath(string studentId)
         {
             string result = string.Empty;
-            foreach (string fileName in Directory.GetDirectories(mainDirectory))
+            foreach (string fileName in Directory.GetDirectories(mainDirectory)) // TODO: Needs to handle exception if filepath is not valid for current machine running the program
             {
                 if (fileName.Contains(studentId))
                 {

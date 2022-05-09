@@ -120,6 +120,7 @@
             this.FormNameTextBox.ReadOnly = true;
             this.FormNameTextBox.Size = new System.Drawing.Size(729, 29);
             this.FormNameTextBox.TabIndex = 19;
+            this.FormNameTextBox.TextChanged += new System.EventHandler(this.FormNameTextBox_TextChanged);
             // 
             // consoleOutputLabel
             // 
@@ -139,6 +140,7 @@
             this.studentEmailSearchBox.ReadOnly = true;
             this.studentEmailSearchBox.Size = new System.Drawing.Size(729, 29);
             this.studentEmailSearchBox.TabIndex = 21;
+            this.studentEmailSearchBox.TextChanged += new System.EventHandler(this.studentEmailSearchBox_TextChanged);
             // 
             // studentInfoLookup
             // 

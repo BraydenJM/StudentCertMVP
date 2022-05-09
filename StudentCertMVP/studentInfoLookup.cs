@@ -21,12 +21,27 @@ namespace StudentCertMVP
             InitializeComponent();
         }
 
+        // receive user input as either
         private void scheduleInputBox_TextChanged(object sender, EventArgs e)
         {
 
+            //The entered values will be stored as List of integars.
+            List<int> enteredValues = new List<int>();
+
+            int value;
+
+            if (int.TryParse(consoleOutputLabel.Text, out value))
+            {
+                enteredValues.Add(value);
+            }
+            else
+            {
+                //Show error message here.
+            }
+
         }
 
-        //stores user input schedule on btn click
+        // stores user input schedule on btn click
         private void enterScheduleBtn_Click(object sender, EventArgs e)
         {
             studentSched = scheduleInputBox.Text;
@@ -42,6 +57,26 @@ namespace StudentCertMVP
         private void idInputBox_TextChanged(object sender, EventArgs e)
         {
             string studentID = Console.ReadLine();
+        }
+
+        private void FormNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            // taking full path of a file
+            string strPath = "C:// myfiles//ref//file1.txt";
+
+            // initialize the value of filename
+            string filename = null;
+
+            // using the method
+            filename = Path.GetFileName(strPath);
+            Console.WriteLine("Filename = " + filename);
+
+            Console.ReadLine();
+        }
+
+        private void studentEmailSearchBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
