@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StudentCertMVP
 {
-    internal class FileHandler
+    public class FileHandler
     {
         public string studentFileDir { get; set; }
         public string mainDirectory { get; set; }
