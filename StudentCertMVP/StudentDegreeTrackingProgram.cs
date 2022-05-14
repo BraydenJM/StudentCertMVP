@@ -13,9 +13,13 @@ namespace StudentCertMVP
     public partial class StudentDegreeTrackingProgram : Form
     {
         //initializes variables to store user input
+        //change references to variable that grabs and saves to config file
         string studentID = "";
         string studentSched = "";
 
+        //initializes FileHandler object for multiple different processes
+        //replace C:\\ with variable that grabs filepath from config file
+        FileHandler files = new FileHandler(@"C:\Users\itadmin\Downloads\StudentFiles");
         public StudentDegreeTrackingProgram()
         {
             InitializeComponent();
@@ -54,10 +58,6 @@ namespace StudentCertMVP
         //}
 
         // receive student id input
-        private void idInputBox_TextChanged(object sender, EventArgs e)
-        {
-            string studentID = Console.ReadLine();
-        }
         
         // exits application when user selects Exit button
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -78,6 +78,24 @@ namespace StudentCertMVP
             Console.WriteLine("Filename = " + filename);
 
             Console.ReadLine();
+        }
+
+        private void selectDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectDirectory selectDirectory = new SelectDirectory();
+            selectDirectory.Show();
+        }
+
+        private void studentFormsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StudentForms studentForms = new StudentForms(files);
+            studentForms.Show();
+        }
+
+        private void overrideQuarterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OverrideQuarter overrideQuarter = new OverrideQuarter();
+            overrideQuarter.Show();
         }
     }
 }
