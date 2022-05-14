@@ -73,46 +73,71 @@ namespace StudentCertMVP
             fileStream.Close();
             List<string> matchedClasses = new List<string>();    
             ISheet x = workbook.GetSheet("Sheet1");
-            for(int i = 22; i < x.LastRowNum; i++) //NOTE LOOP STARTS AT ROW 22 FOR TESTING ONLY
+            //verify sheet is in the updated format
+            if(x.GetRow(2).GetCell(0).StringCellValue.Contains("Course Name", StringComparison.OrdinalIgnoreCase) &&
+               x.GetRow(2).GetCell(1).StringCellValue.Contains("Course ID", StringComparison.OrdinalIgnoreCase) &&
+               x.GetRow(2).GetCell(2).StringCellValue.Contains("Credits", StringComparison.OrdinalIgnoreCase))
             {
+                for (int i = 3; i < x.LastRowNum; i++)
+                {
 
-                if(x.GetRow(i) == null)
-                {
-                    break;
-                }
-                else
-                {
-                    Course matchedClass = matchClass(x.GetRow(i).GetCell(1).StringCellValue);
-                    if(matchedClass != null)
+                    if (x.GetRow(i) == null)
                     {
-                        if (x.GetRow(i).GetCell(3) == null || x.GetRow(i).GetCell(3).StringCellValue == "") //verify cell is emtpy
+                        break;
+                    }
+                    else
+                    {
+                        if(x.GetRow(i).GetCell(0).StringCellValue.Contains("Required Courses", StringComparison.OrdinalIgnoreCase) &&
+                           !int.TryParse(x.GetRow(i).GetCell(2).StringCellValue, out int value))
                         {
-                            x.GetRow(i).GetCell(3).SetCellValue(matchedClass.quarter); //set course code
-                            x.GetRow(i).GetCell(2).SetCellValue(matchedClass.credit); //set credit amount
-                            matchedClasses.Add(matchedClass.classCode);
+                            i++;
+                            matchRequired(ref i, ref x, ref matchedClasses);
                         }
-                        //course has been taken previously, handle note appending
-                        else
-                        {
-                            string cellValue = handleNotes(x.GetRow(i).GetCell(4).ToString());
-                            x.GetRow(i).GetCell(4).SetCellValue(cellValue);
-                            x.GetRow(i).GetCell(3).SetCellValue(matchedClass.quarter); //set course code
-                            x.GetRow(i).GetCell(2).SetCellValue(matchedClass.credit); //set credit amount
-                            matchedClasses.Add(matchedClass.classCode);
-                        }
-                    }               
+
+                    }
                 }
+                fileStream = new FileStream(formPath, FileMode.Create, FileAccess.Write, FileShare.Write);
+                workbook.Write(fileStream);
+                fileStream.Close();
+                string result = "Matched classes:\n";
+                foreach (string matchedClass in matchedClasses)
+                {
+                    result += matchedClass + "\n";
+                }
+                return result;
             }
-            fileStream = new FileStream(formPath, FileMode.Create, FileAccess.Write, FileShare.Write);
-            workbook.Write(fileStream);
-            fileStream.Close();
-            string result = "Matched classes:\n";
-            foreach(string matchedClass in matchedClasses)
+            else
             {
-                result += matchedClass + "\n";
+                throw new Exception("ERROR: Incorrect file tracker format");
+            }
+            
+        }
+        private void matchRequired(ref int row, ref ISheet x, ref List<string> matchedClasses)
+        {
+            while(x.GetRow(row).GetCell(0).StringCellValue != "" && x.GetRow(row).GetCell(0).StringCellValue != null)
+            {
+                Course matchedClass = matchClass(x.GetRow(row).GetCell(1).StringCellValue);
+                if (matchedClass != null)
+                {
+                    if (x.GetRow(row).GetCell(3) == null || x.GetRow(row).GetCell(3).StringCellValue == "") //verify cell is emtpy
+                    {
+                        x.GetRow(row).GetCell(3).SetCellValue(matchedClass.quarter); //set course code
+                        x.GetRow(row).GetCell(2).SetCellValue(matchedClass.credit); //set credit amount
+                        matchedClasses.Add(matchedClass.classCode);
+                    }
+                    //course has been taken previously, handle note appending
+                    else
+                    {
+                        string cellValue = handleNotes(x.GetRow(row).GetCell(4).ToString());
+                        x.GetRow(row).GetCell(4).SetCellValue(cellValue);
+                        x.GetRow(row).GetCell(3).SetCellValue(matchedClass.quarter); //set course code
+                        x.GetRow(row).GetCell(2).SetCellValue(matchedClass.credit); //set credit amount
+                        matchedClasses.Add(matchedClass.classCode);
+                    }
+                }
+                row++;
             }
 
-            return result;
         }
         /// <summary>
         /// Appends, inserts or increments the notes section string of the student tracker. If cell value is blank method return defaults to "Attempt 2"
@@ -228,6 +253,7 @@ namespace StudentCertMVP
                 return  "Attempt 2";
             }
         }
+
         /// <summary>
         /// iterates through parameter list of courses for matching course code provided in args
         /// </summary>
@@ -238,6 +264,7 @@ namespace StudentCertMVP
             foreach(Course course in classList){
                 if(course.classCode.Equals(cellValue, StringComparison.OrdinalIgnoreCase))
                 {
+                    classList.Remove(course);
                     return course;
                 }
             }
