@@ -13,7 +13,6 @@ namespace StudentCertMVP
     public partial class studentInfoLookup : Form
     {
         //initializes variables to store user input
-        string studentID = "";
         string studentSched = "";
 
         public studentInfoLookup()
@@ -47,32 +46,6 @@ namespace StudentCertMVP
             studentSched = scheduleInputBox.Text;
         }
 
-        //stores user input ID on btn click
-        private void idBtn_Click(object sender, EventArgs e)
-        {
-            studentID = idInputBox.Text;
-        }
-
-        // receive student id input
-        private void idInputBox_TextChanged(object sender, EventArgs e)
-        {
-            string studentID = Console.ReadLine();
-        }
-
-        private void FormNameTextBox_TextChanged(object sender, EventArgs e)
-        {
-            // taking full path of a file
-            string strPath = "C:// myfiles//ref//file1.txt";
-
-            // initialize the value of filename
-            string filename = null;
-
-            // using the method
-            filename = Path.GetFileName(strPath);
-            Console.WriteLine("Filename = " + filename);
-
-            Console.ReadLine();
-        }
 
         private void studentEmailSearchBox_TextChanged(object sender, EventArgs e)
         {
