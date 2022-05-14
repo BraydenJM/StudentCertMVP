@@ -103,7 +103,7 @@ namespace StudentCertMVP
                     }               
                 }
             }
-            fileStream = new FileStream(formPath, FileMode.Open, FileAccess.Write, FileShare.Write);
+            fileStream = new FileStream(formPath, FileMode.Create, FileAccess.Write, FileShare.Write);
             workbook.Write(fileStream);
             fileStream.Close();
             string result = "Matched classes:\n";
@@ -141,17 +141,18 @@ namespace StudentCertMVP
                     while (i < noteWords.Length && noteChanged == false)
                     {
                         //check if word is or contains "attempt"
-                        if (noteWords[i].Contains("attempt", StringComparison.Ordinal))
+                        if (noteWords[i].Contains("attempt", StringComparison.OrdinalIgnoreCase))
                         { 
                             //handle situations where there is no whitespace preceeding the attempt number
                             for (int k = 0; k < noteWords[i].Length; k++)
                             {
                                 if (Char.IsDigit(noteWords[i][k]))
                                 {
-                                    attempt = noteWords[i][k];
+                                    char intChar = noteWords[i][k];
+                                    attempt = intChar - '0';
                                     noteWords[i].Replace(",", "");
                                     noteWords[i] = $"Attempt {attempt + 1}";
-                                    k = noteValue.Length + 1;
+                                    k = noteValue.Length + 100;
                                     noteChanged = true;
                                 }
                             }
@@ -200,12 +201,13 @@ namespace StudentCertMVP
                         string result = "";
                         for (int j = 0; j < noteWords.Length - 1; j++)
                         {
+                            noteWords[j].Replace(" ", "");
                             noteWords[j].Replace(",", "");
                             noteWords[j].Replace(".", "");
                             noteWords[j].Replace("_", "");
-                            result += noteWords[j] + ", ";
+                            result += noteWords[j] + " ";
                         }
-                        result += noteWords[noteWords.Length];
+                        result += noteWords[noteWords.Length - 1];
                         return result;
                     }
                     //note was not changed for some reason change to default value
