@@ -10,10 +10,10 @@ namespace StudentCertMVP
     {
         public string className { get; }
         public string classCode { get; }
-        public int credit { get; }
+        public double credit { get; }
         public string quarter { get; }
 
-        public Course(string className, string classCode, int credit, string quarter)
+        public Course(string className, string classCode, double credit, string quarter)
         {
             this.className = className;
             this.classCode = classCode;

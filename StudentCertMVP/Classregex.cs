@@ -9,12 +9,21 @@ namespace StudentCertMVP
 {
     internal class classRegex
     {
-        private List<Course> createStudent(string classString)
+        /// <summary>
+        /// iterates through all of the lists from the other methods, creating course objects from each
+        /// </summary>
+        /// <param name="classString">the string of classes from the main program</param>
+        /// <returns></returns>
+        public List<Course> createStudent(string classString)
         {
             List<Course> studentClasses = new List<Course>();
+            //each one of these calls the other code from this file
             List<String> classCode = createClassCode(classString);
-            List<int> creditCode = createCreditCode(classString);
+            //classString = removeFromString(classCode, classString);
             List<String> quarterCode = createQuarterCode(classString);
+            //classString = removeFromString(quarterCode, classString);
+            List<double> creditCode = createCreditCode(classString);
+            //classString = removeFromStringDouble(creditCode, classString);
             int j = 0;
             int lengthToLoop = classCode.Count;
             for (int i = 0; i < lengthToLoop; i++)
@@ -26,9 +35,14 @@ namespace StudentCertMVP
             return studentClasses;
             
         }
+        /// <summary>
+        /// runs regex on classString to spereate class codes and return them in a list
+        /// </summary>
+        /// <param name="classString">classString from createStudent</param>
+        /// <returns></returns>
         private List<String> createClassCode(string classString)
         {
-            string classPattern = "\b[A-Za-z]{3,4}[&]{0,1}{ }{0,1}[0-9]{3}\b";
+            string classPattern = @"\b[A-Za-z]{3,5}[&]{0,1}[ ]{0,1}[0-9]{3}\b";
             Regex classCodeRegex = new Regex(classPattern);
             var classCode = classCodeRegex.Matches(classString)
                 .Cast<Match>()
@@ -36,19 +50,47 @@ namespace StudentCertMVP
                 .ToList();
             return classCode;
         }
-        private List<int> createCreditCode(string classString)
+        //removeFromString and removeFromStringDouble are no longer necessary
+        /*private string removeFromString(List<string> classCode, string classString)
         {
-            string creditPattern = "\b[A-Za-z]{3,4}[&]{0,1}[0-9]{3}\b";
+            foreach (string classCodeItem in classCode)
+            {
+                classString = classString.Replace(classCodeItem, String.Empty, true, null);
+            }
+            return classString;
+        }
+        private string removeFromStringDouble(List<double> classCode, string classString)
+        {
+            foreach (double classCodeItem in classCode)
+            {
+                classString = classString.Replace(classCodeItem.ToString("N1"), String.Empty, true, null);
+            }
+            return classString;
+        }*/
+
+        /// <summary>
+        /// runs regex on classString to spereate credit amounts and return them in a list
+        /// </summary>
+        /// <param name="classString">classString from createStudent</param>
+        /// <returns></returns>
+        private List<double> createCreditCode(string classString)
+        {
+            string creditPattern = @"\b\d*\.\d+\b";
             Regex creditCodeRegex = new Regex(creditPattern);
             var creditCode = creditCodeRegex.Matches(classString)
                 .Cast<Match>()
-                .Select(m => int.Parse(m.Value))
+                .Select(m => double.Parse(m.Value))
                 .ToList();
             return creditCode;
         }
+        /// <summary>
+        /// runs regex on classString to spereate quarter codes and return them in a list
+        /// </summary>
+        /// <param name="classString">classString from createStudent</param>
+        /// <returns></returns>
         private List<String> createQuarterCode(string classString)
         {
-            string quarterPattern = "\bSP[0-9]{4}|WI[0-9]{4}|FA[0-9]{4}|SU[0-9]{4}\b";
+            string quarterPattern = @"(?i)\bSP[0-9]{4}|WI[0-9]{4}|FA[0-9]{4}|SU[0-9]{4}\b";
             Regex quarterCodeRegex = new Regex(quarterPattern);
             var quarterCode = quarterCodeRegex.Matches(classString)
                 .Cast<Match>()
@@ -56,5 +98,15 @@ namespace StudentCertMVP
                 .ToList();
             return quarterCode;
         }
+        /*public bool studentIDValid(string studentID)
+        {
+            string iDPattern = "\b[0-9]{8}}\b";
+            Regex iDRegex = new Regex(iDPattern);
+            if iDRegex.Matches(studentID) == true
+            {
+                return true;
+            }
+            else return false;
+        }*/
     }
 }
