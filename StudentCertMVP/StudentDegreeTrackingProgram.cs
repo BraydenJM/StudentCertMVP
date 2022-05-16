@@ -25,24 +25,30 @@ namespace StudentCertMVP
             InitializeComponent();
         }
 
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        // receive user input as either
+        private void scheduleInputBox_TextChanged(object sender, EventArgs e)
         {
-            studentInfoLookup stuInfoLookup = new studentInfoLookup();
-            stuInfoLookup.Show(this);
 
-            // opens file browser from menu to allow opening file from local machine
-            var FD = new System.Windows.Forms.OpenFileDialog(); // file opens in "openFileDialog" box
-            if (FD.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            //The entered values will be stored as List of integars.
+            List<int> enteredValues = new List<int>();
+
+            int value;
+
+            if (int.TryParse(consoleOutputLabel.Text, out value))
             {
-                string fileToOpen = FD.FileName;
-
-                System.IO.FileInfo File = new System.IO.FileInfo(FD.FileName);
-
-                //OR
-
-                System.IO.StreamReader reader = new System.IO.StreamReader(fileToOpen);
-                //etc
+                enteredValues.Add(value);
             }
+            else
+            {
+                //Show error message here.
+            }
+
+        }
+
+        // stores user input schedule on btn click
+        private void enterScheduleBtn_Click(object sender, EventArgs e)
+        {
+            studentSched = scheduleInputBox.Text;
         }
 
         //stores user input ID on btn click
@@ -96,6 +102,12 @@ namespace StudentCertMVP
         {
             OverrideQuarter overrideQuarter = new OverrideQuarter();
             overrideQuarter.Show();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            About about = new About();
+            about.Show();
         }
     }
 }
