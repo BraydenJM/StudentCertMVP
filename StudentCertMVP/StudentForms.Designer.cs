@@ -60,19 +60,19 @@
             // 
             // FormNameTextBox
             // 
-            this.FormNameTextBox.Location = new System.Drawing.Point(36, 249);
+            this.FormNameTextBox.Location = new System.Drawing.Point(36, 209);
             this.FormNameTextBox.Multiline = true;
             this.FormNameTextBox.Name = "FormNameTextBox";
             this.FormNameTextBox.ReadOnly = true;
             this.FormNameTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.FormNameTextBox.Size = new System.Drawing.Size(729, 127);
+            this.FormNameTextBox.Size = new System.Drawing.Size(600, 193);
             this.FormNameTextBox.TabIndex = 24;
             // 
             // FormNamesLabel
             // 
             this.FormNamesLabel.AutoSize = true;
             this.FormNamesLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FormNamesLabel.Location = new System.Drawing.Point(340, 211);
+            this.FormNamesLabel.Location = new System.Drawing.Point(269, 181);
             this.FormNamesLabel.Name = "FormNamesLabel";
             this.FormNamesLabel.Size = new System.Drawing.Size(124, 25);
             this.FormNamesLabel.TabIndex = 23;
@@ -80,7 +80,7 @@
             // 
             // idBtn
             // 
-            this.idBtn.Location = new System.Drawing.Point(690, 113);
+            this.idBtn.Location = new System.Drawing.Point(561, 103);
             this.idBtn.Name = "idBtn";
             this.idBtn.Size = new System.Drawing.Size(75, 33);
             this.idBtn.TabIndex = 22;
@@ -93,14 +93,14 @@
             this.idInputBox.Location = new System.Drawing.Point(36, 68);
             this.idInputBox.Multiline = true;
             this.idInputBox.Name = "idInputBox";
-            this.idInputBox.Size = new System.Drawing.Size(729, 29);
+            this.idInputBox.Size = new System.Drawing.Size(600, 29);
             this.idInputBox.TabIndex = 21;
             // 
             // idLabel
             // 
             this.idLabel.AutoSize = true;
             this.idLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.idLabel.Location = new System.Drawing.Point(319, 40);
+            this.idLabel.Location = new System.Drawing.Point(245, 40);
             this.idLabel.Name = "idLabel";
             this.idLabel.Size = new System.Drawing.Size(162, 25);
             this.idLabel.TabIndex = 20;
@@ -110,7 +110,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 398);
+            this.ClientSize = new System.Drawing.Size(657, 438);
             this.Controls.Add(this.FormNameTextBox);
             this.Controls.Add(this.FormNamesLabel);
             this.Controls.Add(this.idBtn);

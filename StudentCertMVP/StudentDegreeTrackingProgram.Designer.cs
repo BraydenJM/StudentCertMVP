@@ -31,25 +31,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentDegreeTrackingProgram));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.studentFormsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.displayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.programStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.formNamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.oPTIONSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.overrideQuarterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sendFeedbackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutTheProgramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.messageDescription = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.studentEmailSearchBox = new System.Windows.Forms.TextBox();
+            this.consoleOutputLabel = new System.Windows.Forms.Label();
+            this.enterScheduleBtn = new System.Windows.Forms.Button();
+            this.scheduleInputBox = new System.Windows.Forms.TextBox();
+            this.scheduleInputLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,9 +48,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.displayToolStripMenuItem,
             this.oPTIONSToolStripMenuItem,
-            this.helpToolStripMenuItem});
+            this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 3, 0, 3);
@@ -70,72 +60,18 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newToolStripMenuItem,
-            this.openToolStripMenuItem,
-            this.quitToolStripMenuItem,
             this.studentFormsToolStripMenuItem});
             this.fileToolStripMenuItem.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
             this.fileToolStripMenuItem.Text = "STUDENT";
             // 
-            // newToolStripMenuItem
-            // 
-            this.newToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control;
-            this.newToolStripMenuItem.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.newToolStripMenuItem.Text = "New";
-            // 
-            // openToolStripMenuItem
-            // 
-            this.openToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control;
-            this.openToolStripMenuItem.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.openToolStripMenuItem.Text = "Open";
-            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
-            // 
-            // quitToolStripMenuItem
-            // 
-            this.quitToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control;
-            this.quitToolStripMenuItem.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-            this.quitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
-            this.quitToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.quitToolStripMenuItem.Text = "Quit";
-            this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
-            // 
             // studentFormsToolStripMenuItem
             // 
             this.studentFormsToolStripMenuItem.Name = "studentFormsToolStripMenuItem";
-            this.studentFormsToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.studentFormsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.studentFormsToolStripMenuItem.Text = "Forms";
             this.studentFormsToolStripMenuItem.Click += new System.EventHandler(this.studentFormsToolStripMenuItem_Click);
-            // 
-            // displayToolStripMenuItem
-            // 
-            this.displayToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.programStatusToolStripMenuItem,
-            this.formNamesToolStripMenuItem});
-            this.displayToolStripMenuItem.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.displayToolStripMenuItem.Name = "displayToolStripMenuItem";
-            this.displayToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
-            this.displayToolStripMenuItem.Text = "PROGRAM";
-            // 
-            // programStatusToolStripMenuItem
-            // 
-            this.programStatusToolStripMenuItem.Name = "programStatusToolStripMenuItem";
-            this.programStatusToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
-            this.programStatusToolStripMenuItem.Text = "Program Status";
-            // 
-            // formNamesToolStripMenuItem
-            // 
-            this.formNamesToolStripMenuItem.Name = "formNamesToolStripMenuItem";
-            this.formNamesToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
-            this.formNamesToolStripMenuItem.Text = "Form Names";
             // 
             // oPTIONSToolStripMenuItem
             // 
@@ -161,97 +97,76 @@
             this.overrideQuarterToolStripMenuItem.Text = "Override Quarter";
             this.overrideQuarterToolStripMenuItem.Click += new System.EventHandler(this.overrideQuarterToolStripMenuItem_Click);
             // 
-            // helpToolStripMenuItem
+            // aboutToolStripMenuItem
             // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.viewHelpToolStripMenuItem,
-            this.sendFeedbackToolStripMenuItem,
-            this.aboutTheProgramToolStripMenuItem});
-            this.helpToolStripMenuItem.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(60, 22);
-            this.helpToolStripMenuItem.Text = "HELP";
+            this.aboutToolStripMenuItem.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(73, 22);
+            this.aboutToolStripMenuItem.Text = "ABOUT";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
-            // viewHelpToolStripMenuItem
+            // studentEmailSearchBox
             // 
-            this.viewHelpToolStripMenuItem.Name = "viewHelpToolStripMenuItem";
-            this.viewHelpToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.viewHelpToolStripMenuItem.Text = "View Help";
+            this.studentEmailSearchBox.Location = new System.Drawing.Point(12, 291);
+            this.studentEmailSearchBox.Multiline = true;
+            this.studentEmailSearchBox.Name = "studentEmailSearchBox";
+            this.studentEmailSearchBox.ReadOnly = true;
+            this.studentEmailSearchBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.studentEmailSearchBox.Size = new System.Drawing.Size(729, 241);
+            this.studentEmailSearchBox.TabIndex = 26;
             // 
-            // sendFeedbackToolStripMenuItem
+            // consoleOutputLabel
             // 
-            this.sendFeedbackToolStripMenuItem.Name = "sendFeedbackToolStripMenuItem";
-            this.sendFeedbackToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.sendFeedbackToolStripMenuItem.Text = "Send Feedback";
+            this.consoleOutputLabel.AutoSize = true;
+            this.consoleOutputLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.consoleOutputLabel.Location = new System.Drawing.Point(295, 263);
+            this.consoleOutputLabel.Name = "consoleOutputLabel";
+            this.consoleOutputLabel.Size = new System.Drawing.Size(152, 25);
+            this.consoleOutputLabel.TabIndex = 25;
+            this.consoleOutputLabel.Text = "Console Output";
             // 
-            // aboutTheProgramToolStripMenuItem
+            // enterScheduleBtn
             // 
-            this.aboutTheProgramToolStripMenuItem.Name = "aboutTheProgramToolStripMenuItem";
-            this.aboutTheProgramToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.aboutTheProgramToolStripMenuItem.Text = "About the Program";
+            this.enterScheduleBtn.Location = new System.Drawing.Point(666, 191);
+            this.enterScheduleBtn.Name = "enterScheduleBtn";
+            this.enterScheduleBtn.Size = new System.Drawing.Size(75, 33);
+            this.enterScheduleBtn.TabIndex = 24;
+            this.enterScheduleBtn.Text = "Enter";
+            this.enterScheduleBtn.UseVisualStyleBackColor = true;
             // 
-            // messageDescription
+            // scheduleInputBox
             // 
-            this.messageDescription.AutoSize = true;
-            this.messageDescription.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.messageDescription.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.messageDescription.Location = new System.Drawing.Point(155, 54);
-            this.messageDescription.Name = "messageDescription";
-            this.messageDescription.Size = new System.Drawing.Size(473, 22);
-            this.messageDescription.TabIndex = 1;
-            this.messageDescription.Text = "Welcome to the Student Degree Tracking Program";
+            this.scheduleInputBox.AcceptsReturn = true;
+            this.scheduleInputBox.AcceptsTab = true;
+            this.scheduleInputBox.AllowDrop = true;
+            this.scheduleInputBox.Location = new System.Drawing.Point(12, 79);
+            this.scheduleInputBox.Multiline = true;
+            this.scheduleInputBox.Name = "scheduleInputBox";
+            this.scheduleInputBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.scheduleInputBox.Size = new System.Drawing.Size(729, 106);
+            this.scheduleInputBox.TabIndex = 23;
             // 
-            // label1
+            // scheduleInputLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(227, 122);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(339, 19);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "You can do the following with this program:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(303, 166);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(128, 16);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Import student files";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(281, 249);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(181, 16);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Modify student\'s degree file";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(258, 206);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(219, 16);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Track a student\'s degree progress";
+            this.scheduleInputLabel.AutoSize = true;
+            this.scheduleInputLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.scheduleInputLabel.Location = new System.Drawing.Point(295, 51);
+            this.scheduleInputLabel.Name = "scheduleInputLabel";
+            this.scheduleInputLabel.Size = new System.Drawing.Size(146, 25);
+            this.scheduleInputLabel.TabIndex = 22;
+            this.scheduleInputLabel.Text = "Schedule Input";
             // 
             // StudentDegreeTrackingProgram
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(753, 639);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.messageDescription);
+            this.ClientSize = new System.Drawing.Size(753, 579);
+            this.Controls.Add(this.studentEmailSearchBox);
+            this.Controls.Add(this.consoleOutputLabel);
+            this.Controls.Add(this.enterScheduleBtn);
+            this.Controls.Add(this.scheduleInputBox);
+            this.Controls.Add(this.scheduleInputLabel);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.ForeColor = System.Drawing.Color.Black;
@@ -272,24 +187,15 @@
 
         private MenuStrip menuStrip1;
         private ToolStripMenuItem fileToolStripMenuItem;
-        private ToolStripMenuItem newToolStripMenuItem;
-        private ToolStripMenuItem openToolStripMenuItem;
-        private ToolStripMenuItem quitToolStripMenuItem;
-        private ToolStripMenuItem displayToolStripMenuItem;
-        private ToolStripMenuItem programStatusToolStripMenuItem;
-        private ToolStripMenuItem formNamesToolStripMenuItem;
-        private ToolStripMenuItem helpToolStripMenuItem;
-        private ToolStripMenuItem viewHelpToolStripMenuItem;
-        private ToolStripMenuItem sendFeedbackToolStripMenuItem;
-        private ToolStripMenuItem aboutTheProgramToolStripMenuItem;
-        private Label messageDescription;
-        private Label label1;
-        private Label label2;
-        private Label label3;
-        private Label label4;
+        private ToolStripMenuItem aboutToolStripMenuItem;
         private ToolStripMenuItem oPTIONSToolStripMenuItem;
         private ToolStripMenuItem selectDirectoryToolStripMenuItem;
         private ToolStripMenuItem overrideQuarterToolStripMenuItem;
         private ToolStripMenuItem studentFormsToolStripMenuItem;
+        private TextBox studentEmailSearchBox;
+        private Label consoleOutputLabel;
+        private Button enterScheduleBtn;
+        private TextBox scheduleInputBox;
+        private Label scheduleInputLabel;
     }
 }
