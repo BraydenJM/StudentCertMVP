@@ -17,7 +17,7 @@ namespace StudentCertMVP
             classRegex regex = new classRegex();
             List<Course> studentClasses = new List<Course>();
             studentClasses = regex.createStudent("test 1, CIS 124, 5.00, FA1234, test 2, 3.50,CIS 246 Su2021, test 1,11.50 CIS144, , SP2134");
-            /*string filepath = @"C:\Users\Brayden\Desktop\StuCert\StudentFiles";
+            string filepath = @"C:\Users\Brayden\Desktop\StuCert\StudentFiles";
             FileHandler files = new FileHandler(filepath);
             files.getFilePath("101015831");
             files.getExcelFilePaths();
@@ -30,7 +30,7 @@ namespace StudentCertMVP
             courses.Add(course1);
             courses.Add(course2);
             Tracker CSV = new Tracker(courses);
-            CSV.matchClasses(forms);*/
+            CSV.matchClasses(forms);
 
 
         }

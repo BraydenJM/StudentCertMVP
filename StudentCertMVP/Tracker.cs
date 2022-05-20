@@ -93,6 +93,32 @@ namespace StudentCertMVP
                             i++;
                             matchRequired(ref i, ref x, ref matchedClasses);
                         }
+                        else if (!int.TryParse(x.GetRow(i).GetCell(2).StringCellValue, out int vals) &&
+                            x.GetRow(i).GetCell(0).StringCellValue.Contains("CR", StringComparison.OrdinalIgnoreCase) ||
+                            x.GetRow(i).GetCell(0).StringCellValue.Contains("Credits", StringComparison.OrdinalIgnoreCase))
+                        {
+                            double maxCredits = 0;
+                            for (int k = 0; k < x.GetRow(i).GetCell(0).ToString().Length; k++)
+                            {
+                                if (Char.IsDigit(x.GetRow(i).GetCell(0).ToString()[k]))
+                                {
+                                    char intChar = x.GetRow(i).GetCell(0).ToString()[k];
+                                    int temp = intChar - '0';
+                                    if(maxCredits != 0)
+                                    {
+                                        maxCredits = (maxCredits * 10) + temp;
+                                    }
+                                    else
+                                    {
+                                        maxCredits += temp;
+                                    }
+                                    
+                                }
+                            }
+                            i++;
+                            matchRequiredElectives(ref i, ref x, ref matchedClasses, maxCredits);
+
+                        }
 
                     }
                 }
@@ -114,7 +140,13 @@ namespace StudentCertMVP
         }
         private void matchRequired(ref int row, ref ISheet x, ref List<string> matchedClasses)
         {
-            while(x.GetRow(row).GetCell(0).StringCellValue != "" && x.GetRow(row).GetCell(0).StringCellValue != null)
+            //Column locations:
+            //col 0 = full class name
+            //col 1 = course code
+            //col 2 = credit amount
+            //col 3 = quarter taken
+            //col 4 = notes
+            while (x.GetRow(row).GetCell(0).StringCellValue != "" && x.GetRow(row).GetCell(0).StringCellValue != null)
             {
                 Course matchedClass = matchClass(x.GetRow(row).GetCell(1).StringCellValue);
                 if (matchedClass != null)
@@ -140,13 +172,82 @@ namespace StudentCertMVP
 
         }
         /// <summary>
-        /// Appends, inserts or increments the notes section string of the student tracker. If cell value is blank method return defaults to "Attempt 2"
-        /// if an attempt has already been made method will increment the attempt number. If other notes already exist, method appends attempt number to
-        /// the end of the note.
+        /// 
         /// </summary>
-        /// <param name="noteValue">cell value of the tracker</param>
-        /// <returns>Incremented, appended, or newly created string to write to notes section</returns>
-        private string handleNotes(string noteValue)
+        /// <param name="row"></param>
+        /// <param name="x"></param>
+        /// <param name="matchedClasses"></param>
+        /// <param name="maxCredits"></param>
+        private void matchRequiredElectives(ref int row, ref ISheet x, ref List<string> matchedClasses, double maxCredits)
+        {
+            //Column locations:
+            //col 0 = full class name
+            //col 1 = course code
+            //col 2 = credit amount
+            //col 3 = quarter taken
+            //col 4 = notes
+            bool creditsExceeded = false;
+            double creditsTaken = 0;
+            int creditCheckRow = row;
+            while (x.GetRow(creditCheckRow).GetCell(0).StringCellValue != "" && x.GetRow(row).GetCell(0).StringCellValue != null)
+            {
+                if (x.GetRow(creditCheckRow).GetCell(3).StringCellValue != "")
+                {
+                    double temp = double.Parse(x.GetRow(creditCheckRow).GetCell(2).ToString());
+                    creditsTaken += temp;
+                }
+                creditCheckRow++;
+            }
+            if(creditsTaken < maxCredits)
+            {
+                while (x.GetRow(row).GetCell(0).StringCellValue != "" && x.GetRow(row).GetCell(0).StringCellValue != null)
+                {
+                    Course matchedClass = matchClass(x.GetRow(row).GetCell(1).StringCellValue);
+                    if (matchedClass != null)
+                    {
+                        creditsTaken += matchedClass.credit;
+                        if (creditsTaken < maxCredits)
+                        {
+                            if (x.GetRow(row).GetCell(3) == null || x.GetRow(row).GetCell(3).StringCellValue == "") //verify cell is emtpy
+                            {
+                                x.GetRow(row).GetCell(3).SetCellValue(matchedClass.quarter); //set course code
+                                x.GetRow(row).GetCell(2).SetCellValue(matchedClass.credit); //set credit amount
+                                matchedClasses.Add(matchedClass.classCode);
+                            }
+                            //course has been taken previously, handle note appending
+                            else
+                            {
+                                string cellValue = handleNotes(x.GetRow(row).GetCell(4).ToString());
+                                x.GetRow(row).GetCell(4).SetCellValue(cellValue);
+                                x.GetRow(row).GetCell(3).SetCellValue(matchedClass.quarter); //set course code
+                                x.GetRow(row).GetCell(2).SetCellValue(matchedClass.credit); //set credit amount
+                                matchedClasses.Add(matchedClass.classCode);
+                            }
+                        }
+                        else
+                        {
+                            creditsExceeded = true;
+                            break;
+                        }
+
+                    }
+                    row++;
+                }
+            }
+            else
+            {
+                creditsExceeded = true;
+            }
+
+        }
+            /// <summary>
+            /// Appends, inserts or increments the notes section string of the student tracker. If cell value is blank method return defaults to "Attempt 2"
+            /// if an attempt has already been made method will increment the attempt number. If other notes already exist, method appends attempt number to
+            /// the end of the note.
+            /// </summary>
+            /// <param name="noteValue">cell value of the tracker</param>
+            /// <returns>Incremented, appended, or newly created string to write to notes section</returns>
+            private string handleNotes(string noteValue)
         {
             //-----------------------------
             //abandon hope all ye who enter

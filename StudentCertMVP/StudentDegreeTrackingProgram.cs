@@ -19,7 +19,7 @@ namespace StudentCertMVP
 
         //initializes FileHandler object for multiple different processes
         //replace C:\\ with variable that grabs filepath from config file
-        FileHandler files = new FileHandler(@"C:\Users\itadmin\Downloads\StudentFiles");
+        FileHandler files = new FileHandler(@"C:\Users\Brayden\Desktop\StuCert\StudentFiles");
         public StudentDegreeTrackingProgram()
         {
             InitializeComponent();
