@@ -16,8 +16,9 @@ namespace StudentCertMVP
         public SelectDirectory()
         {
             InitializeComponent();
-            // replace C:\\ with variable grabbing filepath in config file
-            diag.InitialDirectory = "C:\\";
+
+            diag.InitialDirectory = File.ReadAllText(Path.GetDirectoryName(Application.ExecutablePath) + @"\config.txt");
+
             directoryInputBox.Text = diag.InitialDirectory;
 
         }
@@ -29,10 +30,15 @@ namespace StudentCertMVP
                 {
                     directoryInputBox.Text = diag.SelectedPath;
                     diag.InitialDirectory = diag.SelectedPath;
-                    // set config file variable here
-                    // = diag.SelectedPath
                 }
             
         }
+
+        private void okButton_Click(object sender, EventArgs e)
+        {
+            File.WriteAllTextAsync("config.txt", directoryInputBox.Text);
+            this.Close();
+        }
+
     }
 }

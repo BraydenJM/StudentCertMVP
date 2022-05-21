@@ -18,12 +18,22 @@ namespace StudentCertMVP
         string studentSched = "";
 
         //initializes FileHandler object for multiple different processes
-        //replace C:\\ with variable that grabs filepath from config file
-        FileHandler files = new FileHandler(@"C:\Users\itadmin\Downloads\StudentFiles");
+
+
+
+        classRegex IDcheck = new classRegex();
         public StudentDegreeTrackingProgram()
         {
+
+            if (!File.Exists(Path.GetDirectoryName(Application.ExecutablePath) + @"\config.txt"))
+            {
+                File.WriteAllTextAsync("config.txt", string.Empty);
+            }
+
             InitializeComponent();
         }
+        
+        FileHandler files = new FileHandler(File.ReadAllText(Path.GetDirectoryName(Application.ExecutablePath) + @"\config.txt"));
 
         // receive user input as either
         private void scheduleInputBox_TextChanged(object sender, EventArgs e)
@@ -89,12 +99,20 @@ namespace StudentCertMVP
         private void selectDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SelectDirectory selectDirectory = new SelectDirectory();
+            //selectDirectory.FormClosing += new FormClosingEventHandler(this.SelectDirectory_FormClosing);
             selectDirectory.Show();
         }
 
+        /*private void SelectDirectory_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Controls.Clear();
+            this.InitializeComponent();
+        }*/
+
+
         private void studentFormsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            StudentForms studentForms = new StudentForms(files);
+            StudentForms studentForms = new StudentForms(IDcheck);
             studentForms.Show();
         }
 

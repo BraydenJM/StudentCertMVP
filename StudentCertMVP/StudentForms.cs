@@ -12,17 +12,19 @@ namespace StudentCertMVP
 {
     public partial class StudentForms : Form
     {
-        FileHandler fileHandler;
-        public StudentForms(FileHandler file)
+        FileHandler fileHandler = new FileHandler(File.ReadAllText(Path.GetDirectoryName(Application.ExecutablePath) + @"\config.txt"));
+        classRegex IDcheck;
+        public StudentForms(classRegex idcheck)
         {
             InitializeComponent();
-            fileHandler = file;
+            IDcheck = idcheck;
         }
 
         //processes student id and outputs getStudentForms() to textbox
         private void idBtn_Click_1(object sender, EventArgs e)
         {
             studentID = idInputBox.Text;
+            IDcheck.studentIDValid(studentID);
             fileHandler.getFilePath(studentID);
             string[] lines = new string [(fileHandler.getStudentForms()).Count];
             (fileHandler.getStudentForms()).CopyTo(lines);
