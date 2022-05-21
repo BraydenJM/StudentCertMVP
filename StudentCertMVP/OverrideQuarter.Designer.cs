@@ -48,6 +48,7 @@
             // 
             // quarterBox
             // 
+            this.quarterBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.quarterBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.quarterBox.FormattingEnabled = true;
             this.quarterBox.Items.AddRange(new object[] {
@@ -62,6 +63,7 @@
             // 
             // yearBox
             // 
+            this.yearBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.yearBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.yearBox.FormattingEnabled = true;
             this.yearBox.Items.AddRange(new object[] {
@@ -225,6 +227,8 @@
             // 
             // quarterLabel
             // 
+            this.quarterLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.quarterLabel.AutoSize = true;
             this.quarterLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.quarterLabel.Location = new System.Drawing.Point(46, 97);
@@ -235,6 +239,8 @@
             // 
             // yearLabel
             // 
+            this.yearLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.yearLabel.AutoSize = true;
             this.yearLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.yearLabel.Location = new System.Drawing.Point(237, 97);

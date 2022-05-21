@@ -60,6 +60,10 @@
             // 
             // FormNameTextBox
             // 
+            this.FormNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.FormNameTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.FormNameTextBox.Location = new System.Drawing.Point(36, 209);
             this.FormNameTextBox.Multiline = true;
             this.FormNameTextBox.Name = "FormNameTextBox";
@@ -70,6 +74,8 @@
             // 
             // FormNamesLabel
             // 
+            this.FormNamesLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.FormNamesLabel.AutoSize = true;
             this.FormNamesLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.FormNamesLabel.Location = new System.Drawing.Point(269, 181);
@@ -80,6 +86,7 @@
             // 
             // idBtn
             // 
+            this.idBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.idBtn.Location = new System.Drawing.Point(561, 103);
             this.idBtn.Name = "idBtn";
             this.idBtn.Size = new System.Drawing.Size(75, 33);
@@ -90,6 +97,10 @@
             // 
             // idInputBox
             // 
+            this.idInputBox.AllowDrop = true;
+            this.idInputBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.idInputBox.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.idInputBox.Location = new System.Drawing.Point(36, 68);
             this.idInputBox.Multiline = true;
             this.idInputBox.Name = "idInputBox";
@@ -98,6 +109,8 @@
             // 
             // idLabel
             // 
+            this.idLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.idLabel.AutoSize = true;
             this.idLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.idLabel.Location = new System.Drawing.Point(245, 40);

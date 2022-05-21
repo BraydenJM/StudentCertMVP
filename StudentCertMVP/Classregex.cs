@@ -7,8 +7,9 @@ using System.Text.RegularExpressions;
 
 namespace StudentCertMVP
 {
-    internal class classRegex
+    public class classRegex
     {
+        public string StudentID = null;
         /// <summary>
         /// iterates through all of the lists from the other methods, creating course objects from each
         /// </summary>
@@ -98,15 +99,29 @@ namespace StudentCertMVP
                 .ToList();
             return quarterCode;
         }
-        /*public bool studentIDValid(string studentID)
+        /// <summary>
+        /// this program grabs the student id and checks if it is valid via regex, and then if it is, it returns the id, and if not, it returns an error
+        /// </summary>
+        /// <param name="studentID">student ID number from main program</param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public string studentIDValid(string studentID)
         {
-            string iDPattern = "\b[0-9]{8}}\b";
+            string iDPattern = @"\b[0-9]{9}\b";
             Regex iDRegex = new Regex(iDPattern);
-            if iDRegex.Matches(studentID) == true
+            if (iDRegex.Match(studentID).Value != String.Empty)
             {
-                return true;
+                studentID = iDRegex.Match(studentID).Value;
+                if (studentID == string.Empty)
+                {
+                    studentID = null;
+                }
+                return studentID;
             }
-            else return false;
-        }*/
+            else
+            {
+                throw new Exception("ERROR: Student ID format invalid, please try again.");
+            }
+        }
     }
 }
