@@ -18,8 +18,8 @@ namespace StudentCertMVP
         string studentSched = "";
 
         //initializes FileHandler object for multiple different processes
-
-
+        //replace C:\\ with variable that grabs filepath from config file
+        FileHandler files = new FileHandler(@"C:\Users\Brayden\Desktop\StuCert\StudentFiles");
 
         classRegex IDcheck = new classRegex();
         public StudentDegreeTrackingProgram()
