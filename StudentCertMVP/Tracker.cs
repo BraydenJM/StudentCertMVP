@@ -8,6 +8,7 @@ namespace StudentCertMVP
     public class Tracker
     {
         private List<Course> classList { get; set; }
+        private string alertString { get; set; }
         public Tracker(List<Course> classList)
         {
             this.classList = classList;
@@ -93,9 +94,9 @@ namespace StudentCertMVP
                             i++;
                             matchRequired(ref i, ref x, ref matchedClasses);
                         }
-                        else if (!int.TryParse(x.GetRow(i).GetCell(2).StringCellValue, out int vals) &&
-                            x.GetRow(i).GetCell(0).StringCellValue.Contains("CR", StringComparison.OrdinalIgnoreCase) ||
-                            x.GetRow(i).GetCell(0).StringCellValue.Contains("Credits", StringComparison.OrdinalIgnoreCase))
+                        //!int.TryParse(x.GetRow(i).GetCell(2).StringCellValue, out int vals) &&
+                        else if (x.GetRow(i).GetCell(0).StringCellValue.Contains("CR", StringComparison.OrdinalIgnoreCase) ||
+                                 x.GetRow(i).GetCell(0).StringCellValue.Contains("Credits", StringComparison.OrdinalIgnoreCase))
                         {
                             double maxCredits = 0;
                             for (int k = 0; k < x.GetRow(i).GetCell(0).ToString().Length; k++)
@@ -125,11 +126,26 @@ namespace StudentCertMVP
                 fileStream = new FileStream(formPath, FileMode.Create, FileAccess.Write, FileShare.Write);
                 workbook.Write(fileStream);
                 fileStream.Close();
-                string result = "Matched classes:\n";
+                string result = "Added Classes classes:\n";
                 foreach (string matchedClass in matchedClasses)
                 {
                     result += matchedClass + "\n";
                 }
+                result += "Classes unable to fit into declared degree programs:\n";
+                if(classList.Count > 0)
+                {
+                    foreach (Course course in classList)
+                    {
+                        result += course.classCode + "\n";
+                    }
+                }
+                else
+                {
+                    result += "N/A\n";
+                }
+
+                result += "Additional notes: \n";
+                result += alertString;
                 return result;
             }
             else
@@ -161,6 +177,8 @@ namespace StudentCertMVP
                     else
                     {
                         string cellValue = handleNotes(x.GetRow(row).GetCell(4).ToString());
+                        alertString += $"Note appended to class {matchedClass.classCode}:\n" +
+                            $"{cellValue}\n";
                         x.GetRow(row).GetCell(4).SetCellValue(cellValue);
                         x.GetRow(row).GetCell(3).SetCellValue(matchedClass.quarter); //set course code
                         x.GetRow(row).GetCell(2).SetCellValue(matchedClass.credit); //set credit amount
@@ -186,9 +204,9 @@ namespace StudentCertMVP
             //col 2 = credit amount
             //col 3 = quarter taken
             //col 4 = notes
-            bool creditsExceeded = false;
             double creditsTaken = 0;
             int creditCheckRow = row;
+            //iterate through electives section. get current amount of credits already taken based on quarter attendance
             while (x.GetRow(creditCheckRow).GetCell(0).StringCellValue != "" && x.GetRow(row).GetCell(0).StringCellValue != null)
             {
                 if (x.GetRow(creditCheckRow).GetCell(3).StringCellValue != "")
@@ -198,36 +216,45 @@ namespace StudentCertMVP
                 }
                 creditCheckRow++;
             }
-            if(creditsTaken < maxCredits)
+            if(creditsTaken <= maxCredits)
             {
                 while (x.GetRow(row).GetCell(0).StringCellValue != "" && x.GetRow(row).GetCell(0).StringCellValue != null)
                 {
                     Course matchedClass = matchClass(x.GetRow(row).GetCell(1).StringCellValue);
                     if (matchedClass != null)
                     {
-                        creditsTaken += matchedClass.credit;
-                        if (creditsTaken < maxCredits)
+
+                        if (x.GetRow(row).GetCell(3) == null || x.GetRow(row).GetCell(3).StringCellValue == "") //verify cell is emtpy
                         {
-                            if (x.GetRow(row).GetCell(3) == null || x.GetRow(row).GetCell(3).StringCellValue == "") //verify cell is emtpy
+                            //quarter cell is empty, new class is being added. check if max credits have been exceeded before changing cell values
+                            creditsTaken += matchedClass.credit;
+                            if (creditsTaken <= maxCredits)
                             {
                                 x.GetRow(row).GetCell(3).SetCellValue(matchedClass.quarter); //set course code
                                 x.GetRow(row).GetCell(2).SetCellValue(matchedClass.credit); //set credit amount
                                 matchedClasses.Add(matchedClass.classCode);
                             }
-                            //course has been taken previously, handle note appending
                             else
                             {
-                                string cellValue = handleNotes(x.GetRow(row).GetCell(4).ToString());
-                                x.GetRow(row).GetCell(4).SetCellValue(cellValue);
-                                x.GetRow(row).GetCell(3).SetCellValue(matchedClass.quarter); //set course code
-                                x.GetRow(row).GetCell(2).SetCellValue(matchedClass.credit); //set credit amount
-                                matchedClasses.Add(matchedClass.classCode);
+                                classList.Add(matchedClass);
+                                alertString += $"ALERT: Elective credit amount exceeded, unable to add {matchedClass.classCode}\n" +
+                                    $"Maxiumum allowed credits: {maxCredits} Credit amount with non-fit course: {creditsTaken}";
+                                break;
                             }
+
                         }
+                        //course has been taken previously, handle note appending
                         else
                         {
-                            creditsExceeded = true;
-                            break;
+                            //class has been taken previously and credits are not added to total
+                            string cellValue = handleNotes(x.GetRow(row).GetCell(4).ToString());
+                            alertString += $"Note appended to class {matchedClass.classCode}:\n" +
+                                $"{cellValue}\n";
+                            x.GetRow(row).GetCell(4).SetCellValue(cellValue);
+                            x.GetRow(row).GetCell(3).SetCellValue(matchedClass.quarter); //set course code
+                            x.GetRow(row).GetCell(2).SetCellValue(matchedClass.credit); //set credit amount
+                            matchedClasses.Add(matchedClass.classCode);
+
                         }
 
                     }
@@ -236,7 +263,8 @@ namespace StudentCertMVP
             }
             else
             {
-                creditsExceeded = true;
+                alertString += $"ALERT: Elective credit amount exceeded, unable to add additional courses\n" +
+                    $"Maxiumum allowed credits: {maxCredits} Credit amount with non-fit course: {creditsTaken}";
             }
 
         }
