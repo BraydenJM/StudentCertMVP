@@ -69,7 +69,7 @@
             // studentFormsToolStripMenuItem
             // 
             this.studentFormsToolStripMenuItem.Name = "studentFormsToolStripMenuItem";
-            this.studentFormsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.studentFormsToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.studentFormsToolStripMenuItem.Text = "Forms";
             this.studentFormsToolStripMenuItem.Click += new System.EventHandler(this.studentFormsToolStripMenuItem_Click);
             // 
@@ -107,6 +107,8 @@
             // 
             // studentEmailSearchBox
             // 
+            this.studentEmailSearchBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.studentEmailSearchBox.Location = new System.Drawing.Point(12, 291);
             this.studentEmailSearchBox.Multiline = true;
             this.studentEmailSearchBox.Name = "studentEmailSearchBox";
@@ -127,6 +129,7 @@
             // 
             // enterScheduleBtn
             // 
+            this.enterScheduleBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.enterScheduleBtn.Location = new System.Drawing.Point(666, 191);
             this.enterScheduleBtn.Name = "enterScheduleBtn";
             this.enterScheduleBtn.Size = new System.Drawing.Size(75, 33);
@@ -139,6 +142,8 @@
             this.scheduleInputBox.AcceptsReturn = true;
             this.scheduleInputBox.AcceptsTab = true;
             this.scheduleInputBox.AllowDrop = true;
+            this.scheduleInputBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.scheduleInputBox.Location = new System.Drawing.Point(12, 79);
             this.scheduleInputBox.Multiline = true;
             this.scheduleInputBox.Name = "scheduleInputBox";

@@ -12,6 +12,7 @@ namespace StudentCertMVP
 {
     public partial class OverrideQuarter : Form
     {
+        public string OverrideValue { get; set; }
         public OverrideQuarter()
         {
             InitializeComponent();
@@ -21,7 +22,37 @@ namespace StudentCertMVP
 
         private void idBtn_Click(object sender, EventArgs e)
         {
+            string quarterCode = "";
 
+            DialogResult dialogResult = MessageBox.Show($"Are you sure you would like to override the quarter to {quarterBox.SelectedItem} {yearBox.SelectedItem}?", "Override Quarter", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                switch (quarterBox.SelectedItem)
+                {
+                    case "Spring":
+                            quarterCode = "SP";
+                        break;
+
+                    case "Summer":
+                        quarterCode = "SU";
+                        break;
+
+                    case "Fall":
+                        quarterCode = "FA";
+                        break;
+
+                    case "Winter":
+                        quarterCode = "WI";
+                        break;
+                }
+
+                OverrideValue = quarterCode + yearBox.SelectedItem;
+                this.Close();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+
+            }
         }
     }
 }

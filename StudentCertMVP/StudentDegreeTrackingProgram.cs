@@ -99,13 +99,20 @@ namespace StudentCertMVP
         private void selectDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SelectDirectory selectDirectory = new SelectDirectory();
+            //selectDirectory.FormClosing += new FormClosingEventHandler(this.SelectDirectory_FormClosing);
             selectDirectory.Show();
         }
+
+        /*private void SelectDirectory_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Controls.Clear();
+            this.InitializeComponent();
+        }*/
 
 
         private void studentFormsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            StudentForms studentForms = new StudentForms(files, IDcheck);
+            StudentForms studentForms = new StudentForms(IDcheck);
             studentForms.Show();
         }
 

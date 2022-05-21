@@ -12,12 +12,11 @@ namespace StudentCertMVP
 {
     public partial class StudentForms : Form
     {
-        FileHandler fileHandler;
+        FileHandler fileHandler = new FileHandler(File.ReadAllText(Path.GetDirectoryName(Application.ExecutablePath) + @"\config.txt"));
         classRegex IDcheck;
-        public StudentForms(FileHandler file, classRegex idcheck)
+        public StudentForms(classRegex idcheck)
         {
             InitializeComponent();
-            fileHandler = file;
             IDcheck = idcheck;
         }
 
