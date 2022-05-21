@@ -32,6 +32,7 @@
             this.directoryInputBox = new System.Windows.Forms.TextBox();
             this.browseBtn = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.okButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // directoryLabel
@@ -46,6 +47,10 @@
             // 
             // directoryInputBox
             // 
+            this.directoryInputBox.AllowDrop = true;
+            this.directoryInputBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.directoryInputBox.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.directoryInputBox.Location = new System.Drawing.Point(12, 37);
             this.directoryInputBox.Multiline = true;
             this.directoryInputBox.Name = "directoryInputBox";
@@ -54,7 +59,8 @@
             // 
             // browseBtn
             // 
-            this.browseBtn.Location = new System.Drawing.Point(373, 72);
+            this.browseBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.browseBtn.Location = new System.Drawing.Point(292, 72);
             this.browseBtn.Name = "browseBtn";
             this.browseBtn.Size = new System.Drawing.Size(75, 33);
             this.browseBtn.TabIndex = 23;
@@ -62,11 +68,23 @@
             this.browseBtn.UseVisualStyleBackColor = true;
             this.browseBtn.Click += new System.EventHandler(this.browseBtn_Click);
             // 
+            // okButton
+            // 
+            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.okButton.Location = new System.Drawing.Point(373, 72);
+            this.okButton.Name = "okButton";
+            this.okButton.Size = new System.Drawing.Size(75, 33);
+            this.okButton.TabIndex = 24;
+            this.okButton.Text = "OK";
+            this.okButton.UseVisualStyleBackColor = true;
+            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            // 
             // SelectDirectory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(476, 144);
+            this.Controls.Add(this.okButton);
             this.Controls.Add(this.browseBtn);
             this.Controls.Add(this.directoryInputBox);
             this.Controls.Add(this.directoryLabel);
@@ -83,5 +101,6 @@
         private TextBox directoryInputBox;
         private Button browseBtn;
         private FolderBrowserDialog folderBrowserDialog1;
+        private Button okButton;
     }
 }

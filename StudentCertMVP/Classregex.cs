@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace StudentCertMVP
 {
-    internal class classRegex
+    public class classRegex
     {
         public string StudentID = null;
         /// <summary>
@@ -107,7 +107,7 @@ namespace StudentCertMVP
         /// <exception cref="Exception"></exception>
         public string studentIDValid(string studentID)
         {
-            string iDPattern = @"\b[0-9]{8}\b";
+            string iDPattern = @"\b[0-9]{9}\b";
             Regex iDRegex = new Regex(iDPattern);
             if (iDRegex.Match(studentID).Value != String.Empty)
             {
