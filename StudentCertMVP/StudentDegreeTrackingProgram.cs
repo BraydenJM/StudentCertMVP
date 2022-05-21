@@ -19,7 +19,8 @@ namespace StudentCertMVP
 
         //initializes FileHandler object for multiple different processes
         //replace C:\\ with variable that grabs filepath from config file
-        FileHandler files = new FileHandler(@"C:\Users\Brayden\Desktop\StuCert\StudentFiles");
+        FileHandler files = new FileHandler(File.ReadAllText(Path.GetDirectoryName(Application.ExecutablePath) + @"\config.txt"));
+        //FileHandler files = new FileHandler(@"C:\Users\Brayden\Desktop\StuCert\StudentFiles");
 
         classRegex IDcheck = new classRegex();
         public StudentDegreeTrackingProgram()
@@ -33,7 +34,7 @@ namespace StudentCertMVP
             InitializeComponent();
         }
         
-        FileHandler files = new FileHandler(File.ReadAllText(Path.GetDirectoryName(Application.ExecutablePath) + @"\config.txt"));
+
 
         // receive user input as either
         private void scheduleInputBox_TextChanged(object sender, EventArgs e)
