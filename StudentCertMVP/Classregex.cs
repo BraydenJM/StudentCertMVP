@@ -146,7 +146,7 @@ namespace StudentCertMVP
         public string studentIDValid(string studentID)
         {
             string iDPattern = @"\b[0-9]{9}\b";
-            Regex iDRegex = new Regex(iDPattern, RegexOptions.Multiline);
+            Regex iDRegex = new Regex(iDPattern);
             if (iDRegex.Match(studentID).Value != String.Empty)
             {
                 studentID = iDRegex.Match(studentID).Value;
@@ -154,6 +154,7 @@ namespace StudentCertMVP
                 {
                     studentID = null;
                 }
+                this.StudentID = studentID;
                 return studentID;
             }
             else

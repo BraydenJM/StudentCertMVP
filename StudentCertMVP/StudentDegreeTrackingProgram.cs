@@ -132,6 +132,7 @@ namespace StudentCertMVP
             studentSched = scheduleInputBox.Text.ToString();
             try
             {
+                IDcheck.studentIDValid(studentSched.Replace("\r", ""));
                 List<Course> parsedCourses = IDcheck.createStudent(studentSched.Replace("\r", ""));
                 Tracker parseTracker = new Tracker(parsedCourses);
                 files.getFilePath(IDcheck.StudentID);
