@@ -17,18 +17,22 @@ namespace StudentCertMVP
         string studentID = "";
         string studentSched = "";
 
+
         //initializes FileHandler object for multiple different processes
         //replace C:\\ with variable that grabs filepath from config file
-        FileHandler files = new FileHandler(File.ReadAllText(Path.GetDirectoryName(Application.ExecutablePath) + @"\config.txt"));
+        FileHandler files { get; set; }
         //FileHandler files = new FileHandler(@"C:\Users\Brayden\Desktop\StuCert\StudentFiles");
 
         classRegex IDcheck = new classRegex();
         public StudentDegreeTrackingProgram()
         {
-
             if (!File.Exists(Path.GetDirectoryName(Application.ExecutablePath) + @"\config.txt"))
             {
                 File.WriteAllTextAsync("config.txt", string.Empty);
+            }
+            else
+            {
+                FileHandler files = new FileHandler(File.ReadAllText(Path.GetDirectoryName(Application.ExecutablePath) + @"\config.txt"));
             }
 
             InitializeComponent();
