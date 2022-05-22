@@ -46,7 +46,7 @@ namespace StudentCertMVP
                         break;
                 }
 
-                OverrideValue = quarterCode + " " + yearBox.SelectedItem;
+                OverrideValue = quarterCode + yearBox.SelectedItem.ToString().Remove(0, 2);
                 this.Close();
             }
             else if (dialogResult == DialogResult.No)
