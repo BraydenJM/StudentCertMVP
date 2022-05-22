@@ -18,6 +18,14 @@ namespace StudentCertMVP
         {
             InitializeComponent();
             IDcheck = idcheck;
+            try
+            {
+                idInputBox.Text = IDcheck.StudentID;
+            }
+            catch
+            {
+                //do nothing
+            }
         }
 
         //processes student id and outputs getStudentForms() to textbox
