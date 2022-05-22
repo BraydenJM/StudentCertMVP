@@ -130,10 +130,19 @@ namespace StudentCertMVP
         private void enterScheduleBtn_Click_1(object sender, EventArgs e)
         {
             studentSched = scheduleInputBox.Text;
-            List<Course> parsedCourses = IDcheck.createStudent(studentSched);
-            Tracker parseTracker = new Tracker(parsedCourses);
-            string result = parseTracker.matchClasses(files.getExcelFilePaths());
-            studentEmailSearchBox.Text = result;
+            try
+            {
+                List<Course> parsedCourses = IDcheck.createStudent(studentSched);
+                Tracker parseTracker = new Tracker(parsedCourses);
+                files.getFilePath(IDcheck.StudentID);
+                string result = parseTracker.matchClasses(files.getExcelFilePaths());
+                studentEmailSearchBox.Text = result;
+            }
+            catch(Exception ex)
+            {
+                studentEmailSearchBox.Text = $"ERROR: \n {ex}";
+            }
+
         }
     }
 }
