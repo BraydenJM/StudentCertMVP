@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +18,7 @@ namespace StudentCertMVP
         public List<Course> createStudent(string classString)
         {
             List<Course> studentClasses = new List<Course>();
+            List<Course> studentClassesExit = new List<Course>();
             //each one of these calls the other code from this file
             List<String> classCode = createClassCode(classString);
             //classString = removeFromString(classCode, classString);
@@ -31,17 +32,26 @@ namespace StudentCertMVP
             {
                 if (OverrideQuarter.OverrideValue != null)
                 {
-                    Course overrideCourse = new Course(String.Empty, classCode[j], creditCode[j], OverrideQuarter.OverrideValue);
-                    studentClasses.Add(overrideCourse);
+                        Course overrideCourse = new Course(String.Empty, classCode[j], creditCode[j], OverrideQuarter.OverrideValue);
+                        studentClasses.Add(overrideCourse);
+                        studentClassesExit.Add(overrideCourse);
                 }
                 else
                 {
                     Course newCourse = new Course(String.Empty, classCode[j], creditCode[j], quarterCode);
                     studentClasses.Add(newCourse);
+                    studentClassesExit.Add(newCourse);
                 }
                 j++;
             }
-            return studentClasses;
+            foreach (Course c in studentClasses)
+            {
+                if (c.credit == -1)
+                {
+                    studentClassesExit.Remove(c);
+                }
+            }
+            return studentClassesExit;
             
         }
         /// <summary>
@@ -51,6 +61,10 @@ namespace StudentCertMVP
         /// <returns></returns>
         private List<String> createClassCode(string classString)
         {
+            string atPattern = @"[A-Za-z]{3,5}";
+            Regex atPatternRegex = new Regex(atPattern);
+            string atPattern2 = @"[0-9]{3}";
+            Regex atPattern2Regex = new Regex(atPattern2);
             string classPattern = @"\b[A-Za-z]{3,5}[&]{0,1}[ ]{0,1}[\n\r]{0,1}[0-9]{3}\b";
             Regex classCodeRegex = new Regex(classPattern);
             var classCode = classCodeRegex.Matches(classString)
@@ -60,7 +74,14 @@ namespace StudentCertMVP
             for (int i = 0; i < classCode.Count; i++)
             {
                 classCode[i] = classCode[i].Replace("\n", "");
+                if (!classCode[i].Contains("&"))
+                {
+                    string part1 = atPatternRegex.Match(classCode[i]).ToString();
+                    string part2 = atPattern2Regex.Match(classCode[i]).ToString();
+                    classCode[i] = part1 + " " + part2;
+                }
             }
+
             return classCode;
         }
         //removeFromString and removeFromStringDouble are no longer necessary
