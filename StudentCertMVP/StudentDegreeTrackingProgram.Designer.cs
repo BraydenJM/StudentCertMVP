@@ -136,6 +136,7 @@
             this.enterScheduleBtn.TabIndex = 24;
             this.enterScheduleBtn.Text = "Enter";
             this.enterScheduleBtn.UseVisualStyleBackColor = true;
+            this.enterScheduleBtn.Click += new System.EventHandler(this.enterScheduleBtn_Click_1);
             // 
             // scheduleInputBox
             // 
