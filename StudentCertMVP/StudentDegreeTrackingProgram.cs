@@ -129,10 +129,10 @@ namespace StudentCertMVP
         // allow to input studentID and studentSchedule and display in console output box
         private void enterScheduleBtn_Click_1(object sender, EventArgs e)
         {
-            studentSched = scheduleInputBox.Text;
+            studentSched = scheduleInputBox.Text.ToString();
             try
             {
-                List<Course> parsedCourses = IDcheck.createStudent(studentSched);
+                List<Course> parsedCourses = IDcheck.createStudent(studentSched.Replace("\r", ""));
                 Tracker parseTracker = new Tracker(parsedCourses);
                 files.getFilePath(IDcheck.StudentID);
                 string result = parseTracker.matchClasses(files.getExcelFilePaths());
