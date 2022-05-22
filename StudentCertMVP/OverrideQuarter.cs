@@ -12,7 +12,7 @@ namespace StudentCertMVP
 {
     public partial class OverrideQuarter : Form
     {
-        public string OverrideValue { get; set; }
+        public static string OverrideValue { get; set; }
         public OverrideQuarter()
         {
             InitializeComponent();
@@ -30,23 +30,23 @@ namespace StudentCertMVP
                 switch (quarterBox.SelectedItem)
                 {
                     case "Spring":
-                            quarterCode = "SP";
+                            quarterCode = "SPRING";
                         break;
 
                     case "Summer":
-                        quarterCode = "SU";
+                        quarterCode = "SUMMER";
                         break;
 
                     case "Fall":
-                        quarterCode = "FA";
+                        quarterCode = "FALL";
                         break;
 
                     case "Winter":
-                        quarterCode = "WI";
+                        quarterCode = "WINTER";
                         break;
                 }
 
-                OverrideValue = quarterCode + yearBox.SelectedItem;
+                OverrideValue = yearBox.SelectedItem + " " + quarterCode;
                 this.Close();
             }
             else if (dialogResult == DialogResult.No)
