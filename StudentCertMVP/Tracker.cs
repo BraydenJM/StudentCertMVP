@@ -33,6 +33,7 @@ namespace StudentCertMVP
             foreach (string form in forms)
             {
                 string[] fileExtension = form.Split('.');
+                alertString = "";
 
                 if (fileExtension[1].Equals("xls", StringComparison.OrdinalIgnoreCase))
                 {
