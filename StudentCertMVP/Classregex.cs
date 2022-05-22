@@ -51,7 +51,7 @@ namespace StudentCertMVP
         /// <returns></returns>
         private List<String> createClassCode(string classString)
         {
-            string classPattern = @"\b[A-Za-z]{3,5}[&]{0,1}[ ]{0,1}[\r\n]{0,1}[0-9]{3}\b";
+            string classPattern = @"\b[A-Za-z]{3,5}[&]{0,1}[ ]{0,1}[\n\r]{0,1}[0-9]{3}\b";
             Regex classCodeRegex = new Regex(classPattern);
             var classCode = classCodeRegex.Matches(classString)
                 .Cast<Match>()

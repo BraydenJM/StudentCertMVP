@@ -21,8 +21,6 @@ namespace StudentCertMVP
         //initializes FileHandler object for multiple different processes
         //replace C:\\ with variable that grabs filepath from config file
         FileHandler files { get; set; }
-        //FileHandler files = new FileHandler(@"C:\Users\Brayden\Desktop\StuCert\StudentFiles");
-
         classRegex IDcheck = new classRegex();
         public StudentDegreeTrackingProgram()
         {
@@ -30,10 +28,7 @@ namespace StudentCertMVP
             {
                 File.WriteAllTextAsync("config.txt", string.Empty);
             }
-            else
-            {
-                FileHandler files = new FileHandler(File.ReadAllText(Path.GetDirectoryName(Application.ExecutablePath) + @"\config.txt"));
-            }
+            this.files = new FileHandler(File.ReadAllText(Path.GetDirectoryName(Application.ExecutablePath) + @"\config.txt"));
 
             InitializeComponent();
         }
@@ -43,7 +38,6 @@ namespace StudentCertMVP
         // receive user input as either
         private void scheduleInputBox_TextChanged(object sender, EventArgs e)
         {
-
             //The entered values will be stored as List of integars.
             List<int> enteredValues = new List<int>();
 
@@ -63,7 +57,6 @@ namespace StudentCertMVP
         // stores user input schedule on btn click
         private void enterScheduleBtn_Click(object sender, EventArgs e)
         {
-            studentSched = scheduleInputBox.Text;
         }
 
         //stores user input ID on btn click
@@ -136,9 +129,11 @@ namespace StudentCertMVP
         // allow to input studentID and studentSchedule and display in console output box
         private void enterScheduleBtn_Click_1(object sender, EventArgs e)
         {
-            double studentChed = 0;
-            double.TryParse(scheduleInputBox.Text, out studentChed);
-            studentEmailSearchBox.Text = (studentChed).ToString();
+            studentSched = scheduleInputBox.Text;
+            List<Course> parsedCourses = IDcheck.createStudent(studentSched);
+            Tracker parseTracker = new Tracker(parsedCourses);
+            string result = parseTracker.matchClasses(files.getExcelFilePaths());
+            studentEmailSearchBox.Text = result;
         }
     }
 }
