@@ -136,9 +136,9 @@ namespace StudentCertMVP
                 List<Course> parsedCourses = IDcheck.createStudent(studentSched.Replace("\r", ""));
                 Tracker parseTracker = new Tracker(parsedCourses);
                 files.getFilePath(IDcheck.StudentID);
-                string result = parseTracker.matchClasses(files.getExcelFilePaths());
+                string result = parseTracker.matchClasses(files.getExcelFilePaths()).Replace("\n", Environment.NewLine);
 
-                studentEmailSearchBox.Text = result.Replace("\n", Environment.NewLine);
+                studentEmailSearchBox.Text = result;
             }
             catch(Exception ex)
             {
