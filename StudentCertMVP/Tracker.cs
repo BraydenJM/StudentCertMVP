@@ -46,7 +46,7 @@ namespace StudentCertMVP
                 {
                     string[] formName = form.Split("\\");
                     formName = formName[formName.Length - 1].Split(".");
-                    result += $"Results for {formName[0]}";
+                    result += $"Results for {formName[0]}\n";
                     result += matchClassesXSSF(form);
                 }
 
