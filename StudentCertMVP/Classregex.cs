@@ -149,14 +149,42 @@ namespace StudentCertMVP
         /// <returns></returns>
         private String createQuarterCode(string classString)
         {
+            string year = null;
                 string quarterPattern = @"(?i)\b[0-9]{4}[ ]{0,1}SPRING|[0-9]{4}[ ]{0,1}WINTER|[0-9]{4}[ ]{0,1}FALL|[0-9]{4}[ ]{0,1}SUMMER\b";
                 Regex quarterCodeRegex = new Regex(quarterPattern);
             string quarterCode = quarterCodeRegex.Match(classString).Value;
+            string quarterPattern2 = @"[0-9]{4}";
+            Regex quarterCode2Regex = new Regex(quarterPattern2);
+            //string quarterPattern3 = @"(?i)SPRING|WINTER|FALL|SUMMER";
+            if (quarterCode.Contains("FALL"))
+            {
+                year = quarterCode2Regex.Match(quarterCode).ToString();
+                string yearNumber = year.Remove(0, 2);
+                year = "FA" + yearNumber;
+            }
+            else if (quarterCode.Contains("WINTER"))
+            {
+                year = quarterCode2Regex.Match(quarterCode).ToString();
+                string yearNumber = year.Remove(0, 1);
+                year = "W" + yearNumber;
+            }
+            else if (quarterCode.Contains("SUMMER"))
+            {
+                year = quarterCode2Regex.Match(quarterCode).ToString();
+                string yearNumber = year.Remove(0, 1);
+                year = "SU" + yearNumber;
+            }
+            else if (quarterCode.Contains("SPRING"))
+            {
+                year = quarterCode2Regex.Match(quarterCode).ToString();
+                string yearNumber = year.Remove(0, 1);
+                year = "SP" + yearNumber;
+            }
                 /*var quarterCode = quarterCodeRegex.Matches(classString)
                     .Cast<Match>()
                     .Select(m => m.Value)
                     .ToList();*/
-                return quarterCode;
+                return year;
         }
         /// <summary>
         /// this program grabs the student id and checks if it is valid via regex, and then if it is, it returns the id, and if not, it returns an error

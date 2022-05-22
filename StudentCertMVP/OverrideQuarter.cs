@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -30,23 +30,23 @@ namespace StudentCertMVP
                 switch (quarterBox.SelectedItem)
                 {
                     case "Spring":
-                            quarterCode = "SPRING";
+                            quarterCode = "SP";
                         break;
 
                     case "Summer":
-                        quarterCode = "SUMMER";
+                        quarterCode = "SU";
                         break;
 
                     case "Fall":
-                        quarterCode = "FALL";
+                        quarterCode = "FA";
                         break;
 
                     case "Winter":
-                        quarterCode = "WINTER";
+                        quarterCode = "W";
                         break;
                 }
 
-                OverrideValue = yearBox.SelectedItem + " " + quarterCode;
+                OverrideValue = quarterCode + " " + yearBox.SelectedItem;
                 this.Close();
             }
             else if (dialogResult == DialogResult.No)
