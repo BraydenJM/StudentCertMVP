@@ -137,7 +137,8 @@ namespace StudentCertMVP
                 Tracker parseTracker = new Tracker(parsedCourses);
                 files.getFilePath(IDcheck.StudentID);
                 string result = parseTracker.matchClasses(files.getExcelFilePaths());
-                studentEmailSearchBox.Text = result;
+
+                studentEmailSearchBox.Text = result.Replace("\n", Environment.NewLine);
             }
             catch(Exception ex)
             {
