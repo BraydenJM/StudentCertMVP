@@ -43,7 +43,10 @@ namespace StudentCertMVP
                 }
                 else if (fileExtension[1].Equals("xlsx", StringComparison.OrdinalIgnoreCase))
                 {
-                    result = matchClassesXSSF(form);
+                    string[] formName = form.Split("\\");
+                    formName = formName[formName.Length - 1].Split(".");
+                    result += $"Results for {formName[0]}";
+                    result += matchClassesXSSF(form);
                 }
 
                 else
@@ -126,7 +129,7 @@ namespace StudentCertMVP
                 fileStream = new FileStream(formPath, FileMode.Create, FileAccess.Write, FileShare.Write);
                 workbook.Write(fileStream);
                 fileStream.Close();
-                string result = "Added Classes classes:\n";
+                string result = "Added Classes:\n";
                 foreach (string matchedClass in matchedClasses)
                 {
                     result += matchedClass + "\n";
