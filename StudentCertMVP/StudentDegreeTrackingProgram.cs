@@ -132,5 +132,13 @@ namespace StudentCertMVP
             About about = new About();
             about.Show();
         }
+
+        // allow to input studentID and studentSchedule and display in console output box
+        private void enterScheduleBtn_Click_1(object sender, EventArgs e)
+        {
+            double studentChed = 0;
+            double.TryParse(scheduleInputBox.Text, out studentChed);
+            studentEmailSearchBox.Text = (studentChed).ToString();
+        }
     }
 }
