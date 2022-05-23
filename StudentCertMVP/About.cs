@@ -15,6 +15,18 @@ namespace StudentCertMVP
         public About()
         {
             InitializeComponent();
+
+        }
+
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void schduleInputrtb_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
