@@ -57,4 +57,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="schduleInputrtb.Text" xml:space="preserve">
+    <value>The Schedule Input operation is present upon first opening the program.
+
+The user may type in or paste the text for a student's schedule into the Schedule Input (upper) text box. 
+
+If correctly formatted and upon clicking the Enter button, the Console Output will then display feedback on the changes made.</value>
+  </data>
+  <data name="richTextBox1.Text" xml:space="preserve">
+    <value>The Student Forms operation can be found in "Student" in the menu strip under "Forms".
+
+The user may enter a valid Student ID and recieve a list of .pdf forms in the folder correlated with that Student ID.</value>
+  </data>
+  <data name="richTextBox2.Text" xml:space="preserve">
+    <value>The Change Directory operation can be found in "Options" in the menu strip under "Change Directory".
+
+The user may manually enter or browse and select a folder path from which the program will search for student files.
+
+To browse, simply click the "Browse" button, navigate to the desired folder and click "Select Folder".
+
+Once the desired folder path has been chosen, the user may click "OK" button to save the changes.</value>
+  </data>
+  <data name="richTextBox3.Text" xml:space="preserve">
+    <value>The Override Quarter operation can be found in "Options" in the menu strip under "Override Quarter".
+
+The user may select a quarter and year to override for all courses.
+
+To select the quarter and year, click on the selection boxes to open up a drop down menu and choose the desired options. To confirm the override, click the "Submit" button. The user will be prompted to confirm these changes.</value>
+  </data>
 </root>

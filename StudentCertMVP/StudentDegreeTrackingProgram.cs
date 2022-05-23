@@ -123,6 +123,7 @@ namespace StudentCertMVP
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             About about = new About();
+            about.StartPosition = FormStartPosition.CenterScreen;
             about.Show();
         }
 
