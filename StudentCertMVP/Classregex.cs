@@ -165,19 +165,19 @@ namespace StudentCertMVP
             else if (quarterCode.Contains("WINTER"))
             {
                 year = quarterCode2Regex.Match(quarterCode).ToString();
-                string yearNumber = year.Remove(0, 1);
+                string yearNumber = year.Remove(0, 2);
                 year = "W" + yearNumber;
             }
             else if (quarterCode.Contains("SUMMER"))
             {
                 year = quarterCode2Regex.Match(quarterCode).ToString();
-                string yearNumber = year.Remove(0, 1);
+                string yearNumber = year.Remove(0, 2);
                 year = "SU" + yearNumber;
             }
             else if (quarterCode.Contains("SPRING"))
             {
                 year = quarterCode2Regex.Match(quarterCode).ToString();
-                string yearNumber = year.Remove(0, 1);
+                string yearNumber = year.Remove(0, 2);
                 year = "SP" + yearNumber;
             }
                 /*var quarterCode = quarterCodeRegex.Matches(classString)
